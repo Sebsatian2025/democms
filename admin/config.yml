@@ -59,17 +59,11 @@ collections:
         name: "footer"
         file: "content/footer.md"
         fields:
-          - { label: "Título ubicación", name: "footer_location_title", widget: "string" }
-          - { label: "Texto ubicación", name: "footer_location_text", widget: "markdown" }
-          - { label: "Título redes sociales", name: "footer_social_title", widget: "string" }
           - { label: "Enlace Facebook", name: "footer_link_facebook", widget: "string" }
-          - { label: "Enlace Google Plus", name: "footer_link_google", widget: "string" }
           - { label: "Enlace Twitter", name: "footer_link_twitter", widget: "string" }
-          - { label: "Enlace Dribbble", name: "footer_link_dribbble", widget: "string" }
-          - { label: "Título sobre", name: "footer_about_title", widget: "string" }
-          - { label: "Texto sobre", name: "footer_about_text", widget: "markdown" }
-          - { label: "Texto copyright", name: "footer_copy_text", widget: "string" }
           - { label: "Enlace GitHub", name: "footer_link_github", widget: "string" }
+          - { label: "Texto copyright", name: "footer_copy_text", widget: "string" }
+
 
 
       # SERVICES
@@ -115,6 +109,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
