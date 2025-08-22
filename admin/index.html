@@ -7,6 +7,25 @@
   </head>
   <body>
 
+    <!-- 0) Parche para override de passive listeners -->
+    <script>
+    ;(function() {
+      const original = EventTarget.prototype.addEventListener;
+      EventTarget.prototype.addEventListener = function(type, listener, options) {
+        if (type === 'touchstart' || type === 'touchmove') {
+          if (options == null) {
+            options = { passive: false };
+          } else if (typeof options === 'object') {
+            options.passive = false;
+          } else if (typeof options === 'boolean') {
+            options = { capture: options, passive: false };
+          }
+        }
+        return original.call(this, type, listener, options);
+      };
+    })();
+    </script>
+
     <!-- 1) Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
