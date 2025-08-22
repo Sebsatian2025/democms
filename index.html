@@ -223,17 +223,26 @@
 });
         </script>
 
-        <!-- Script de redirección para tokens de Netlify Identity -->
-        <script>
-          (function() {
-            var hash = window.location.hash;
-            if (hash && (hash.includes('invite_token') || hash.includes('recovery_token'))) {
-              // Redirige a /admin conservando el token
-              window.location.href = '/admin/' + hash;
-            }
-          })();
-        </script>
-
+<!-- Script de redirección para tokens de Netlify Identity (invite, recovery y confirmación de email) -->
+<script>
+    (function() {
+      var hash = window.location.hash;
+      if (!hash) return;
+  
+      // Lista de tokens a interceptar
+      var tokens = ['invite_token', 'recovery_token', 'confirmation_token'];
+  
+      // Si el hash contiene alguno de esos tokens, redirige a /admin/ con el hash completo
+      var shouldRedirect = tokens.some(function(t) {
+        return hash.includes(t);
+      });
+  
+      if (shouldRedirect) {
+        window.location.href = '/admin/' + hash;
+      }
+    })();
+  </script>
+  
 </body>
 
 </html>
