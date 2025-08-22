@@ -9,33 +9,26 @@
     <title>Content Manager</title>
   </head>
   <body>
-
-    <!-- 1) Carga de Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <!-- o, si prefieres seguir con Netlify CMS clásico, usa:
-    <script src="https://unpkg.com/netlify-cms-app/dist/netlify-cms.js"></script>
-    -->
-
-    <!-- 2) Carga del widget de Netlify Identity -->
+    <!-- 1) Carga y configuración de Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
     <script>
-      // 3) Inicializa Identity y enlaza el botón
-      if (window.netlifyIdentity) {
+      // Inicializa Identity antes de cargar el CMS
+      function initIdentity() {
         netlifyIdentity.init();
+        // Después de login o logout, recarga el admin
+        netlifyIdentity.on('login', () => window.location.href = '/admin/');
+        netlifyIdentity.on('logout', () => window.location.href = '/admin/');
+      }
 
-        // Si vienes con invite_token o recovery_token, abre el modal
-        const h = window.location.hash;
-        if (h.includes('invite_token') || h.includes('recovery_token')) {
-          netlifyIdentity.open();
-        }
-
-        // Después de loguearte/aceptar invitación, recarga el CMS
-        netlifyIdentity.on('login', () => {
-          window.location.href = '/admin/';
-        });
+      if (window.netlifyIdentity) {
+        initIdentity();
+      } else {
+        // Por si se carga tarde
+        document.addEventListener('netlifyIdentityReady', initIdentity);
       }
     </script>
 
+    <!-- 2) Carga de Decap CMS (antes lo tenías al revés) -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
