@@ -26,14 +26,18 @@
     <!-- 2) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-    <!-- 3) Ocultar TODO el preview de imágenes -->
-    <style>
-      /* cualquier clase que termine o contenga "PreviewContainer" */
-      [class$="PreviewContainer"],
-      [class*="PreviewContainer"] {
-        display: none !important;
-      }
-    </style>
+<!-- 3) Ocultar TODO el panel de Preview -->
+<style>
+  /* Esconde la columna de preview entera */
+  .nc-app__pane--preview {
+    display: none !important;
+  }
 
+  /* Ajusta el ancho de la columna de editor para que use todo el espacio */
+  .nc-app__pane--editor {
+    flex: 1 1 auto !important;
+  }
+</style>
   </body>
 </html>
+
