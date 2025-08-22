@@ -10,40 +10,37 @@
   </head>
   <body>
 
-<!-- 1) Netlify Identity -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  function initIdentity() {
-    netlifyIdentity.init();
-    netlifyIdentity.on('login',  () => window.location.href = '/admin/');
-    netlifyIdentity.on('logout', () => window.location.href = '/admin/');
-  }
-  if (window.netlifyIdentity) initIdentity();
-  else document.addEventListener('netlifyIdentityReady', initIdentity);
-</script>
+    <!-- 1) Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      function initIdentity() {
+        netlifyIdentity.init();
+        netlifyIdentity.on('login',  () => window.location.href = '/admin/');
+        netlifyIdentity.on('logout', () => window.location.href = '/admin/');
+      }
+      if (window.netlifyIdentity) initIdentity();
+      else document.addEventListener('netlifyIdentityReady', initIdentity);
+    </script>
 
-<!-- 2) Desactivar auto-init -->
-<script>
-  window.CMS_MANUAL_INIT = true;
-</script>
+    <!-- 2) Desactivar init automático -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
 
-<!-- React 17 -->
-<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- 3) React (requerido por tu template) -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
-<!-- Tu template -->
-<script src="preview-templates.js"></script>
+    <!-- 4) Decap CMS (crea window.CMS) -->
+    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-<!-- Decap CMS -->
-<script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+    <!-- 5) Tu Preview Template (ahora CMS ya existe) -->
+    <script src="preview-templates.js"></script>
 
-<script>
-  window.CMS.init();
-</script>
+    <!-- 6) Inicializar CMS manualmente -->
+    <script>
+      window.CMS.init();
+    </script>
 
   </body>
 </html>
-
-
-
-
