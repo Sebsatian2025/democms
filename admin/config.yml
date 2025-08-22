@@ -35,8 +35,7 @@ collections:
         file: "content/about.md"
         fields:
           - { label: "Título", name: "about_title", widget: "string" }
-          - { label: "Texto columna 1", name: "about_text_1", widget: "markdown" }
-          - { label: "Texto columna 2", name: "about_text_2", widget: "markdown" }
+          - { label: "Subtítulo", name: "about_subtitle", widget: "string" }
           - { label: "Texto del botón", name: "about_button_text", widget: "string" }
           - { label: "Enlace del botón", name: "about_button_link", widget: "string" }
 
@@ -92,3 +91,4 @@ collections:
           - { label: "Enlace botón 1", name: "cta_button_1_link", widget: "string" }
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
