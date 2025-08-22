@@ -103,6 +103,8 @@ collections:
         name: "cta"
         file: "content/cta.md"
         fields:
+          - { label: "Color de fondo", name: "about_background_color", widget: "color", default: "#f8f9fa" }
+
           - { label: "Título", name: "cta_title", widget: "string" }
 
           - { label: "Texto botón 1", name: "cta_button_1_text", widget: "string" }
@@ -110,6 +112,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
