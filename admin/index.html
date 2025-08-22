@@ -4,21 +4,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Content Manager</title>
-
-    <!-- Estilos para achicar imágenes en el panel del CMS -->
-    <style>
-      img[role="presentation"] {
-        max-width: 200px !important;
-        height: auto !important;
-        border-radius: 6px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        margin-bottom: 0.5rem;
-      }
-    </style>
   </head>
   <body>
 
-    <!-- Netlify Identity -->
+    <!-- 1) Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       function initIdentity() {
@@ -30,8 +19,23 @@
       else document.addEventListener('netlifyIdentityReady', initIdentity);
     </script>
 
-    <!-- Decap CMS -->
+    <!-- 2) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+
+    <!-- 3) ESTILOS PARA MINIATURAS -->
+    <style>
+      /* 
+        Selecciona cualquier contenedor de preview de widget 
+        y aplica estilos a la img que tenga role="presentation" 
+      */
+      [class*="WidgetPreviewContainer"] img[role="presentation"] {
+        max-width: 200px !important;
+        height: auto !important;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        margin-bottom: 0.5rem;
+      }
+    </style>
 
   </body>
 </html>
