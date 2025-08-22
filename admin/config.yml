@@ -6,30 +6,29 @@ media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
 collections:
-  # Colección de archivos únicos para secciones fijas
+  # Archivos únicos para secciones estáticas
   - name: "site_content"
     label: "Contenido del sitio"
     files:
-
       # HEADER
       - label: "Header"
         name: "header"
         file: "content/header.md"
         fields:
-          - { label: "Imagen de perfil",      name: "header_profile_img", widget: "image" }
-          - { label: "Título principal",      name: "header_title",       widget: "string" }
-          - { label: "Subtítulo",             name: "header_subtitle",    widget: "string" }
+          - { label: "Imagen de perfil", name: "header_profile_img", widget: "image" }
+          - { label: "Título principal", name: "header_title",       widget: "string" }
+          - { label: "Subtítulo",        name: "header_subtitle",    widget: "string" }
 
       # ABOUT
       - label: "About"
         name: "about"
         file: "content/about.md"
         fields:
-          - { label: "Título",                name: "about_title",        widget: "string" }
-          - { label: "Texto columna 1",       name: "about_text_1",       widget: "markdown" }
-          - { label: "Texto columna 2",       name: "about_text_2",       widget: "markdown" }
-          - { label: "Texto del botón",       name: "about_button_text",  widget: "string" }
-          - { label: "Enlace del botón",      name: "about_button_link",  widget: "string" }
+          - { label: "Título",            name: "about_title",       widget: "string" }
+          - { label: "Texto columna 1",   name: "about_text_1",      widget: "markdown" }
+          - { label: "Texto columna 2",   name: "about_text_2",      widget: "markdown" }
+          - { label: "Texto botón",       name: "about_button_text", widget: "string" }
+          - { label: "Enlace botón",      name: "about_button_link", widget:
 
       # FOOTER
       - label: "Footer"
@@ -95,3 +94,4 @@ collections:
       - { label: "Imagen 2", name: "portfolio_img_2", widget: "image" }
       - { label: "Imagen 3", name: "portfolio_img_3", widget: "image" }
       - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
+
