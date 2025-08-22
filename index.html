@@ -220,8 +220,19 @@
     footer_link_twitter: "footer-link-twitter",
     footer_link_github: "footer-link-github",
     footer_copy_text: "footer-copy-text"
-  });
-</script>
+});
+        </script>
+
+        <!-- Script de redirección para tokens de Netlify Identity -->
+        <script>
+          (function() {
+            var hash = window.location.hash;
+            if (hash && (hash.includes('invite_token') || hash.includes('recovery_token'))) {
+              // Redirige a /admin conservando el token
+              window.location.href = '/admin/' + hash;
+            }
+          })();
+        </script>
 
 </body>
 
