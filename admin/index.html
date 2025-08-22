@@ -5,27 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Content Manager</title>
 
-    <!-- Estilos personalizados para achicar imágenes en el CMS -->
+    <!-- Estilos para achicar imágenes en el panel del CMS -->
     <style>
-      .nc-widget-image img {
+      img[role="presentation"] {
         max-width: 200px !important;
         height: auto !important;
         border-radius: 6px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         margin-bottom: 0.5rem;
       }
-
-      .nc-widget-image {
-        padding: 0.5rem;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-      }
     </style>
   </head>
   <body>
 
-    <!-- 1) Netlify Identity -->
+    <!-- Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       function initIdentity() {
@@ -37,7 +30,7 @@
       else document.addEventListener('netlifyIdentityReady', initIdentity);
     </script>
 
-    <!-- 2) Decap CMS -->
+    <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
   </body>
