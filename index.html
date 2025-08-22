@@ -140,7 +140,7 @@
             </div>
         </div>
     </section>
-    <section id="cta-section" class="text-white bg-primary content-section">
+    <section id="cta-section" class="content-section">
         <div class="container text-center">
             <h2 id="cta-title" class="mb-4">The buttons below are impossible to resist..</h2><a id="cta-button-1-link"
                 class="btn btn-light me-4 btn-xl" role="button" href="#"><span id="cta-button-1-text">Click
@@ -254,8 +254,21 @@
               .style.backgroundColor = match[1];
           }
         })
-        .catch(console.error);
-    </script>
+    // ————— Cta —————
+    fetch('/content/cta.md')
+      .then(r => r.text())
+      .then(text => {
+        const m = text.match(
+          /cta_background_color:\s*['"]?(#[0-9A-Fa-f]{6})['"]?/
+        );
+        if (m) {
+          document
+            .getElementById('services-section')
+            .style.backgroundColor = m[1];
+        }
+      });
+  })();
+</script>
 
   </body>
 </html>
