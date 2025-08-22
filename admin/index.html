@@ -22,20 +22,26 @@
     <!-- 2) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-    <!-- 3) ESTILOS PARA MINIATURAS -->
-    <style>
-      /* 
-        Selecciona cualquier contenedor de preview de widget 
-        y aplica estilos a la img que tenga role="presentation" 
-      */
-      [class*="WidgetPreviewContainer"] img[role="presentation"] {
-        max-width: 200px !important;
-        height: auto !important;
-        border-radius: 6px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        margin-bottom: 0.5rem;
+    <!-- 3) Script para estilizar miniaturas en el panel -->
+    <script>
+      // Función que da estilo a todas las miniaturas
+      function styleThumbnails() {
+        document.querySelectorAll('img[role="presentation"]').forEach(img => {
+          img.style.maxWidth = '200px';
+          img.style.height = 'auto';
+          img.style.borderRadius = '6px';
+          img.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+          img.style.marginBottom = '0.5rem';
+        });
       }
-    </style>
+
+      // Ejecutar al cargar y cada vez que cambie el DOM
+      document.addEventListener('DOMContentLoaded', () => {
+        styleThumbnails();
+        new MutationObserver(styleThumbnails)
+          .observe(document.body, { childList: true, subtree: true });
+      });
+    </script>
 
   </body>
 </html>
