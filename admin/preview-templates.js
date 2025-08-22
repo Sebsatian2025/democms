@@ -1,5 +1,3 @@
-const { registerPreviewTemplate } = window.CMS;
-
 function PortfolioPreview({ entry }) {
   const keys = [
     'portfolio_img_1',
@@ -31,4 +29,12 @@ function PortfolioPreview({ entry }) {
   return React.createElement('div', { className: 'row' }, items);
 }
 
-registerPreviewTemplate('portfolio', PortfolioPreview);
+// Esperamos a que CMS esté disponible
+window.addEventListener('load', () => {
+  if (window.CMS) {
+    window.CMS.registerPreviewTemplate('portfolio', PortfolioPreview);
+    console.log("✅ PortfolioPreview registrado");
+  } else {
+    console.warn("⚠️ CMS no está disponible aún");
+  }
+});
