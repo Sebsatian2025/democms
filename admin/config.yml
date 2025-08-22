@@ -25,37 +25,21 @@ collections:
         name: "portfolio"
         file: "content/portfolio.md"
         fields:
-          - label: "Imagen 1"
-            name: "portfolio_item_1"
-            widget: "object"
-            fields:
-              - { label: "Imagen", name: "portfolio_img_1", widget: "image" }
-              - { label: "Título", name: "portfolio_title_1", widget: "string" }
-              - { label: "Descripción", name: "portfolio_desc_1", widget: "string" }
+          - { label: "Imagen 1", name: "portfolio_img_1", widget: "image" }
+          - { label: "Título imagen 1", name: "portfolio_title_1", widget: "string" }
+          - { label: "Descripción imagen 1", name: "portfolio_desc_1", widget: "string" }
 
-          - label: "Imagen 2"
-            name: "portfolio_item_2"
-            widget: "object"
-            fields:
-              - { label: "Imagen", name: "portfolio_img_2", widget: "image" }
-              - { label: "Título", name: "portfolio_title_2", widget: "string" }
-              - { label: "Descripción", name: "portfolio_desc_2", widget: "string" }
+          - { label: "Imagen 2", name: "portfolio_img_2", widget: "image" }
+          - { label: "Título imagen 2", name: "portfolio_title_2", widget: "string" }
+          - { label: "Descripción imagen 2", name: "portfolio_desc_2", widget: "string" }
 
-          - label: "Imagen 3"
-            name: "portfolio_item_3"
-            widget: "object"
-            fields:
-              - { label: "Imagen", name: "portfolio_img_3", widget: "image" }
-              - { label: "Título", name: "portfolio_title_3", widget: "string" }
-              - { label: "Descripción", name: "portfolio_desc_3", widget: "string" }
+          - { label: "Imagen 3", name: "portfolio_img_3", widget: "image" }
+          - { label: "Título imagen 3", name: "portfolio_title_3", widget: "string" }
+          - { label: "Descripción imagen 3", name: "portfolio_desc_3", widget: "string" }
 
-          - label: "Imagen 4"
-            name: "portfolio_item_4"
-            widget: "object"
-            fields:
-              - { label: "Imagen", name: "portfolio_img_4", widget: "image" }
-              - { label: "Título", name: "portfolio_title_4", widget: "string" }
-              - { label: "Descripción", name: "portfolio_desc_4", widget: "string" }
+          - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
+          - { label: "Título imagen 4", name: "portfolio_title_4", widget: "string" }
+          - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
 
 
 
@@ -124,6 +108,7 @@ collections:
           - { label: "Enlace botón 1", name: "cta_button_1_link", widget: "string" }
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
