@@ -1,7 +1,7 @@
-/* Aplica a cualquier imagen dentro del panel de Decap CMS */
-body img[role="presentation"] {
-  max-width: 200px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 4px;
+/* apunta a TODO img de preview (tienen role="presentation") */
+img[role="presentation"] {
+  max-width: 200px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
 }
