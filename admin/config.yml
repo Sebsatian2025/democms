@@ -17,6 +17,8 @@ collections:
           - { label: "Imagen de perfil", name: "header_profile_img", widget: "image" }
           - { label: "Título principal", name: "header_title", widget: "string" }
           - { label: "Subtítulo", name: "header_subtitle", widget: "string" }
+          - { label: "Texto del botón", name: "header_button_text", widget: "string" }
+          - { label: "Enlace del botón", name: "header_button_link", widget: "string" }
 
       # PORTFOLIO
       - label: "Portfolio"
@@ -27,6 +29,15 @@ collections:
           - { label: "Imagen 2", name: "portfolio_img_2", widget: "image" }
           - { label: "Imagen 3", name: "portfolio_img_3", widget: "image" }
           - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
+          - { label: "Título imagen 1", name: "portfolio_title_1", widget: "string" }
+          - { label: "Descripción imagen 1", name: "portfolio_desc_1", widget: "string" }
+          - { label: "Título imagen 2", name: "portfolio_title_2", widget: "string" }
+          - { label: "Descripción imagen 2", name: "portfolio_desc_2", widget: "string" }
+          - { label: "Título imagen 3", name: "portfolio_title_3", widget: "string" }
+          - { label: "Descripción imagen 3", name: "portfolio_desc_3", widget: "string" }
+          - { label: "Título imagen 4", name: "portfolio_title_4", widget: "string" }
+          - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
+
 
 
       # ABOUT
@@ -54,6 +65,8 @@ collections:
           - { label: "Título sobre", name: "footer_about_title", widget: "string" }
           - { label: "Texto sobre", name: "footer_about_text", widget: "markdown" }
           - { label: "Texto copyright", name: "footer_copy_text", widget: "string" }
+          - { label: "Enlace GitHub", name: "footer_link_github", widget: "string" }
+
 
       # SERVICES
       - label: "Services"
@@ -91,4 +104,5 @@ collections:
           - { label: "Enlace botón 1", name: "cta_button_1_link", widget: "string" }
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
