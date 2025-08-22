@@ -4,11 +4,23 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Content Manager</title>
+
+    <!-- 1. Cargamos React y ReactDOM como UMD globals -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+    ></script>
+
+    <!-- 2. Cargamos Netlify/Decap CMS -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-
-    <!-- Netlify Identity -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Netlify Identity init -->
     <script>
       function initIdentity() {
         netlifyIdentity.init();
@@ -19,40 +31,7 @@
       else document.addEventListener('netlifyIdentityReady', initIdentity);
     </script>
 
-    <!-- Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
-
-    <!-- Custom widget “small-image” -->
-    <script>
-      (function(CMS) {
-        // 1. Obtengo control original de image
-        const imageWidget = CMS.getWidget('image');
-        const ImageControl = imageWidget.control;
-        
-        // 2. Creo el preview que aplica estilos inline
-        function SmallImagePreview({ value }) {
-          if (!value) return null;
-          return React.createElement('img', {
-            src: value,
-            style: {
-              maxWidth: '200px',
-              height: 'auto',
-              borderRadius: '6px',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-              marginBottom: '0.5rem'
-            },
-            alt: ''  // evita warnings de accesibilidad
-          });
-        }
-
-        // 3. Registro el nuevo widget
-        CMS.registerWidget(
-          'small-image',     // nombre que usaré en config.yml
-          ImageControl,      // componente de edición igual que image
-          SmallImagePreview  // nuestro preview estilizado
-        );
-      })(window.CMS);
-    </script>
-
+    <!-- 3. Tu extensión: custom widget -->
+    <script src="cms-extension.js"></script>
   </body>
 </html>
