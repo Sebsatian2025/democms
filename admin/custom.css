@@ -1,7 +1,0 @@
-/* apunta a TODO img de preview (tienen role="presentation") */
-img[role="presentation"] {
-  max-width: 200px !important;
-  height: auto !important;
-  object-fit: contain !important;
-  border-radius: 4px !important;
-}
