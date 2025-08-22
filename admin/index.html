@@ -18,22 +18,9 @@
       if (window.netlifyIdentity) initIdentity();
       else document.addEventListener('netlifyIdentityReady', initIdentity);
     </script>
-
-    <!-- 2) Desactivar init automático -->
-    <script>window.CMS_MANUAL_INIT = true;</script>
-
-    <!-- 3) React (para el preview) -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-
     <!-- 4) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-    <!-- 5) Tu Preview Template -->
-    <script src="preview-templates.js"></script>
-
-    <!-- 6) Inicializar CMS -->
-    <script>window.CMS.init();</script>
-
   </body>
 </html>
+
