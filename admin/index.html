@@ -1,3 +1,4 @@
+<!-- File: admin/index.html -->
 <!doctype html>
 <html>
   <head>
@@ -22,35 +23,8 @@
     <!-- 2) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-    <!-- 3) Script robusto para miniaturas -->
-    <script>
-      (function() {
-        const styleProps = {
-          maxWidth: '200px',
-          height: 'auto',
-          borderRadius: '6px',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-          marginBottom: '0.5rem'
-        };
-
-        function styleAll() {
-          document.querySelectorAll('img[role="presentation"]').forEach(img => {
-            // Solo reasignamos si no está ya ajustado
-            if (img.getAttribute('data-styled') !== 'true') {
-              Object.assign(img.style, styleProps);
-              img.setAttribute('data-styled', 'true');
-            }
-          });
-        }
-
-        // Repetir cada 300ms hasta que salgas del panel
-        let interval = setInterval(styleAll, 300);
-
-        // Si en algún momento el CMS se desmonta (por logout, cambio de ruta, etc.)
-        // limpiamos el interval para no consumir recursos
-        window.addEventListener('beforeunload', () => clearInterval(interval));
-      })();
-    </script>
+    <!-- 3) CMS Custom Styles & Logic -->
+    <script src="cms-extension.js"></script>
 
   </body>
 </html>
