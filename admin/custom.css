@@ -1,0 +1,5 @@
+.nc-widget-preview-image img {
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+}
