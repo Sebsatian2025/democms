@@ -1,11 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta 
-      name="viewport" 
-      content="width=device-width, initial-scale=1.0" 
-    />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Content Manager</title>
   </head>
   <body>
@@ -22,25 +19,21 @@
       else document.addEventListener('netlifyIdentityReady', initIdentity);
     </script>
 
-    <!-- 2) Desactivar init automático -->
-    <script>
-      window.CMS_MANUAL_INIT = true;
-    </script>
+    <!-- 2) Desactivar init automático para registrar templates -->
+    <script>window.CMS_MANUAL_INIT = true;</script>
 
-    <!-- 3) React (requerido por tu template) -->
+    <!-- 3) React & ReactDOM (necesarios para tu PreviewTemplate) -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
-    <!-- 4) Decap CMS (crea window.CMS) -->
+    <!-- 4) Decap CMS: crea window.CMS pero no inicializa -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-    <!-- 5) Tu Preview Template (ahora CMS ya existe) -->
+    <!-- 5) Tu Preview Template -->
     <script src="preview-templates.js"></script>
 
-    <!-- 6) Inicializar CMS manualmente -->
-    <script>
-      window.CMS.init();
-    </script>
+    <!-- 6) Inicializar CMS con el template ya registrado -->
+    <script>window.CMS.init();</script>
 
   </body>
 </html>
