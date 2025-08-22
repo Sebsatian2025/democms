@@ -160,115 +160,119 @@
             </ul>
             <p class="text-muted mb-0 small" id="footer-copy-text">Copyright &nbsp;© Brand 2025</p>
         </div><a class="rounded scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/script.min.js?h=b98bc9154e64d254ab0ea4513287f585"></script>
-    <script src="assets/js/loadSection.js"></script>
-<script>
-  loadSection("header", {
-    header_title: "header-title",
-    header_subtitle: "header-subtitle",
-    header_button_text: "header-button-text",
-    header_button_link: "header-button-link"
-  });
+  </footer>
+  <!-- Bootstrap y tu JS principal -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/script.min.js?h=b98bc9154e64d254ab0ea4513287f585"></script>
+  <script src="assets/js/loadSection.js"></script>
 
-  loadSection("about", {
-    about_title: "about-title",
-    about_subtitle: "about-subtitle",
-    about_button_text: "about-button-text",
-    about_button_link: "about-button-link"
-  });
+  <!-- Único bloque de scripts: loadSection, Identity redirect y colores dinámicos -->
+  <script>
+  ;(function() {
+    //
+    // 1) loadSection para todos los bloques de contenido
+    //
+    loadSection("header", {
+      header_title:       "header-title",
+      header_subtitle:    "header-subtitle",
+      header_button_text: "header-button-text",
+      header_button_link: "header-button-link"
+    });
 
-  loadSection("portfolio", {
-    portfolio_img_1: "portfolio-img-1",
-    portfolio_img_2: "portfolio-img-2",
-    portfolio_img_3: "portfolio-img-3",
-    portfolio_img_4: "portfolio-img-4",
-    portfolio_img_5: "portfolio-img-5",
-    portfolio_img_6: "portfolio-img-6"
-  });
+    loadSection("about", {
+      about_title:       "about-title",
+      about_subtitle:    "about-subtitle",
+      about_button_text: "about-button-text",
+      about_button_link: "about-button-link"
+    });
 
-  loadSection("services", {
-    services_subtitle: "services-subtitle",
-    services_title: "services-title",
-    service_title_1: "service-title-1",
-    service_desc_1: "service-desc-1",
-    service_title_2: "service-title-2",
-    service_desc_2: "service-desc-2",
-    service_title_3: "service-title-3",
-    service_desc_3: "service-desc-3",
-    service_title_4: "service-title-4",
-    service_desc_4: "service-desc-4"
-  });
+    loadSection("portfolio", {
+      portfolio_img_1: "portfolio-img-1",
+      portfolio_img_2: "portfolio-img-2",
+      portfolio_img_3: "portfolio-img-3",
+      portfolio_img_4: "portfolio-img-4",
+      portfolio_img_5: "portfolio-img-5",
+      portfolio_img_6: "portfolio-img-6"
+    });
 
-  loadSection("callout", {
-    callout_title: "callout-title",
-    callout_button_text: "callout-button-text",
-    callout_button_link: "callout-button-link"
-  });
+    loadSection("services", {
+      services_subtitle: "services-subtitle",
+      services_title:    "services-title",
+      service_title_1:   "service-title-1",
+      service_desc_1:    "service-desc-1",
+      service_title_2:   "service-title-2",
+      service_desc_2:    "service-desc-2",
+      service_title_3:   "service-title-3",
+      service_desc_3:    "service-desc-3",
+      service_title_4:   "service-title-4",
+      service_desc_4:    "service-desc-4"
+    });
 
-  loadSection("cta", {
-    cta_title: "cta-title",
-    cta_button_1_text: "cta-button-1-text",
-    cta_button_1_link: "cta-button-1-link",
-    cta_button_2_text: "cta-button-2-text",
-    cta_button_2_link: "cta-button-2-link"
-  });
+    loadSection("callout", {
+      callout_title:       "callout-title",
+      callout_button_text: "callout-button-text",
+      callout_button_link: "callout-button-link"
+    });
 
-  loadSection("footer", {
-    footer_link_facebook: "footer-link-facebook",
-    footer_link_twitter: "footer-link-twitter",
-    footer_link_github: "footer-link-github",
-    footer_copy_text: "footer-copy-text"
-});
-        </script>
+    loadSection("cta", {
+      cta_title:         "cta-title",
+      cta_button_1_text: "cta-button-1-text",
+      cta_button_1_link: "cta-button-1-link",
+      cta_button_2_text: "cta-button-2-text",
+      cta_button_2_link: "cta-button-2-link"
+    });
 
-    <!-- Script de redirección para Netlify Identity tokens -->
-    <script>
-      (function() {
-        var hash = window.location.hash;
-        if (!hash) return;
+    loadSection("footer", {
+      footer_link_facebook: "footer-link-facebook",
+      footer_link_twitter:  "footer-link-twitter",
+      footer_link_github:   "footer-link-github",
+      footer_copy_text:     "footer-copy-text"
+    });
 
-        var tokens = ['invite_token', 'recovery_token', 'confirmation_token'];
-        var shouldRedirect = tokens.some(function(t) {
-          return hash.includes(t);
-        });
+    //
+    // 2) Netlify Identity: redirigir si hay token en el hash
+    //
+    (function() {
+      var hash = window.location.hash;
+      if (!hash) return;
+      var tokens = ['invite_token', 'recovery_token', 'confirmation_token'];
+      var shouldRedirect = tokens.some(function(t) {
+        return hash.includes(t);
+      });
+      if (shouldRedirect) {
+        window.location.href = '/admin/' + hash;
+      }
+    })();
 
-        if (shouldRedirect) {
-          window.location.href = '/admin/' + hash;
-        }
-      })();
-    </script>
+    //
+    // 3) Dinámicamente aplicar background-color desde el front-matter
+    //
+    var colorSections = [
+      { file: '/content/about.md', id: 'about-section', field: 'about_background_color' },
+      { file: '/content/cta.md',   id: 'cta-section',   field: 'cta_background_color' }
+      // → Para añadir otra sección, duplica este objeto:
+      // { file: '/content/new.md', id: 'new-section', field: 'new_background_color' }
+    ];
 
-    <!-- Script para leer about.md y aplicar el color al section -->
-    <script>
-      fetch('/content/about.md')
+    colorSections.forEach(function(item) {
+      fetch(item.file)
         .then(function(res) { return res.text(); })
         .then(function(text) {
-          var match = text.match(
-            /about_background_color:\s*["']?(#[0-9A-Fa-f]{6})["']?/
+          var regex = new RegExp(
+            item.field + '\\s*:\\s*[\'"]?(#[0-9A-Fa-f]{6})[\'"]?'
           );
+          var match = text.match(regex);
           if (match) {
             document
-              .getElementById('about-section')
+              .getElementById(item.id)
               .style.backgroundColor = match[1];
           }
         })
-    // ————— Cta —————
-    fetch('/content/cta.md')
-      .then(r => r.text())
-      .then(text => {
-        const m = text.match(
-          /cta_background_color:\s*['"]?(#[0-9A-Fa-f]{6})['"]?/
-        );
-        if (m) {
-          document
-            .getElementById('services-section')
-            .style.backgroundColor = m[1];
-        }
-      });
+        .catch(console.error);
+    });
   })();
-</script>
+  </script>
 
-  </body>
+</body>
 </html>
+
