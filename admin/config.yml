@@ -18,15 +18,44 @@ collections:
           - { label: "Título principal", name: "header_title", widget: "string" }
           - { label: "Subtítulo", name: "header_subtitle", widget: "string" }
 
-      # PORTFOLIO
-      - label: "Portfolio"
-        name: "portfolio"
-        file: "content/portfolio.md"
-        fields:
-          - { label: "Imagen 1", name: "portfolio_img_1", widget: "image" }
-          - { label: "Imagen 2", name: "portfolio_img_2", widget: "image" }
-          - { label: "Imagen 3", name: "portfolio_img_3", widget: "image" }
-          - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
+# PORTFOLIO
+- label: "Portfolio"
+  name: "portfolio"
+  file: "content/portfolio.md"
+  fields:
+    - label: "Imagen 1"
+      name: "portfolio_img_1"
+      widget: "select"
+      options:
+        - "/assets/img/portfolio-1.jpg"
+        - "/assets/img/portfolio-2.jpg"
+        - "/assets/img/portfolio-3.jpg"
+        - "/assets/img/portfolio-4.jpg"
+    - label: "Imagen 2"
+      name: "portfolio_img_2"
+      widget: "select"
+      options:
+        - "/assets/img/portfolio-1.jpg"
+        - "/assets/img/portfolio-2.jpg"
+        - "/assets/img/portfolio-3.jpg"
+        - "/assets/img/portfolio-4.jpg"
+    - label: "Imagen 3"
+      name: "portfolio_img_3"
+      widget: "select"
+      options:
+        - "/assets/img/portfolio-1.jpg"
+        - "/assets/img/portfolio-2.jpg"
+        - "/assets/img/portfolio-3.jpg"
+        - "/assets/img/portfolio-4.jpg"
+    - label: "Imagen 4"
+      name: "portfolio_img_4"
+      widget: "select"
+      options:
+        - "/assets/img/portfolio-1.jpg"
+        - "/assets/img/portfolio-2.jpg"
+        - "/assets/img/portfolio-3.jpg"
+        - "/assets/img/portfolio-4.jpg"
+
 
       # ABOUT
       - label: "About"
@@ -91,4 +120,5 @@ collections:
           - { label: "Enlace botón 1", name: "cta_button_1_link", widget: "string" }
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
