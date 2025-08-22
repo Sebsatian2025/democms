@@ -39,7 +39,7 @@
                     More</span></a>
         </div>
     </header>
-    <section class="content-section" id="about-section" style="background-color: {{ about_background_color }};">
+    <section class="content-section" id="about-section">
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
@@ -223,26 +223,39 @@
 });
         </script>
 
-<!-- Script de redirección para tokens de Netlify Identity (invite, recovery y confirmación de email) -->
-<script>
-    (function() {
-      var hash = window.location.hash;
-      if (!hash) return;
-  
-      // Lista de tokens a interceptar
-      var tokens = ['invite_token', 'recovery_token', 'confirmation_token'];
-  
-      // Si el hash contiene alguno de esos tokens, redirige a /admin/ con el hash completo
-      var shouldRedirect = tokens.some(function(t) {
-        return hash.includes(t);
-      });
-  
-      if (shouldRedirect) {
-        window.location.href = '/admin/' + hash;
-      }
-    })();
-  </script>
-  
-</body>
+    <!-- Script de redirección para Netlify Identity tokens -->
+    <script>
+      (function() {
+        var hash = window.location.hash;
+        if (!hash) return;
 
+        var tokens = ['invite_token', 'recovery_token', 'confirmation_token'];
+        var shouldRedirect = tokens.some(function(t) {
+          return hash.includes(t);
+        });
+
+        if (shouldRedirect) {
+          window.location.href = '/admin/' + hash;
+        }
+      })();
+    </script>
+
+    <!-- Script para leer about.md y aplicar el color al section -->
+    <script>
+      fetch('/content/about.md')
+        .then(function(res) { return res.text(); })
+        .then(function(text) {
+          var match = text.match(
+            /about_background_color:\s*["']?(#[0-9A-Fa-f]{6})["']?/
+          );
+          if (match) {
+            document
+              .getElementById('about-section')
+              .style.backgroundColor = match[1];
+          }
+        })
+        .catch(console.error);
+    </script>
+
+  </body>
 </html>
