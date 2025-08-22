@@ -22,25 +22,34 @@
     <!-- 2) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
 
-    <!-- 3) Script para estilizar miniaturas en el panel -->
+    <!-- 3) Script robusto para miniaturas -->
     <script>
-      // Función que da estilo a todas las miniaturas
-      function styleThumbnails() {
-        document.querySelectorAll('img[role="presentation"]').forEach(img => {
-          img.style.maxWidth = '200px';
-          img.style.height = 'auto';
-          img.style.borderRadius = '6px';
-          img.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
-          img.style.marginBottom = '0.5rem';
-        });
-      }
+      (function() {
+        const styleProps = {
+          maxWidth: '200px',
+          height: 'auto',
+          borderRadius: '6px',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+          marginBottom: '0.5rem'
+        };
 
-      // Ejecutar al cargar y cada vez que cambie el DOM
-      document.addEventListener('DOMContentLoaded', () => {
-        styleThumbnails();
-        new MutationObserver(styleThumbnails)
-          .observe(document.body, { childList: true, subtree: true });
-      });
+        function styleAll() {
+          document.querySelectorAll('img[role="presentation"]').forEach(img => {
+            // Solo reasignamos si no está ya ajustado
+            if (img.getAttribute('data-styled') !== 'true') {
+              Object.assign(img.style, styleProps);
+              img.setAttribute('data-styled', 'true');
+            }
+          });
+        }
+
+        // Repetir cada 300ms hasta que salgas del panel
+        let interval = setInterval(styleAll, 300);
+
+        // Si en algún momento el CMS se desmonta (por logout, cambio de ruta, etc.)
+        // limpiamos el interval para no consumir recursos
+        window.addEventListener('beforeunload', () => clearInterval(interval));
+      })();
     </script>
 
   </body>
