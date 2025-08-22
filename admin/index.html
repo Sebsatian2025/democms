@@ -7,7 +7,17 @@
       content="width=device-width, initial-scale=1.0" 
     />
     <title>Content Manager</title>
-        <link rel="stylesheet" href="custom.css" />
+    <link rel="stylesheet" href="custom.css" />
+
+    <!-- override inline para las previews de imagen -->
+    <style>
+      img[role="presentation"] {
+        max-width: 200px !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 4px !important;
+      }
+    </style>
   </head>
   <body>
     <!-- 1) Carga y configuración de Netlify Identity -->
@@ -33,4 +43,5 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
+
 
