@@ -8,41 +8,32 @@
     />
     <title>Content Manager</title>
     <link rel="stylesheet" href="custom.css" />
-
-    <!-- override inline para las previews de imagen -->
-<style>
-  [class$="PreviewContainer"] img[role="presentation"],
-  [class*="PreviewContainer"] img[role="presentation"] {
-    max-width: 200px !important;
-    max-height: 200px !important;
-    object-fit: contain !important;
-  }
-</style>
   </head>
   <body>
-    <!-- 1) Carga y configuración de Netlify Identity -->
+
+    <!-- 1) Netlify Identity -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      // Inicializa Identity antes de cargar el CMS
       function initIdentity() {
         netlifyIdentity.init();
-        // Después de login o logout, recarga el admin
-        netlifyIdentity.on('login', () => window.location.href = '/admin/');
+        netlifyIdentity.on('login',  () => window.location.href = '/admin/');
         netlifyIdentity.on('logout', () => window.location.href = '/admin/');
       }
-
-      if (window.netlifyIdentity) {
-        initIdentity();
-      } else {
-        // Por si se carga tarde
-        document.addEventListener('netlifyIdentityReady', initIdentity);
-      }
+      if (window.netlifyIdentity) initIdentity();
+      else document.addEventListener('netlifyIdentityReady', initIdentity);
     </script>
 
-    <!-- 2) Carga de Decap CMS (antes lo tenías al revés) -->
+    <!-- 2) Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <!-- 3) Ocultar TODO el preview de imágenes -->
+    <style>
+      /* cualquier clase que termine o contenga "PreviewContainer" */
+      [class$="PreviewContainer"],
+      [class*="PreviewContainer"] {
+        display: none !important;
+      }
+    </style>
+
   </body>
 </html>
-
-
-
