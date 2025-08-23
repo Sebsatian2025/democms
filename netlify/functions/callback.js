@@ -1,32 +1,49 @@
 // netlify/functions/callback.js
-const CALLBACK = process.env.OAUTH_CALLBACK
-  || 'https://sebastiandemo.netlify.app/.netlify/functions/callback';
+import cookie from 'cookie'
+import { OAuth } from './common/oauth.js'      // 🔥 Esto faltaba
 
 export const handler = async (event) => {
-  // …pasa CALLBACK en vez de process.env.OAUTH_CALLBACK…
-  // Ejemplo del primer paso de redirect:
-  if (!event.queryStringParameters?.code) {
-    const authorizationURL = new OAuth('github').getAuthorizationURL({
-      redirect_uri: CALLBACK,
-      scope: 'repo',
-    });
+  const params = event.queryStringParameters || {}
+  const cookies = cookie.parse(event.headers.cookie || '')
+  const referer = cookies.referer || '/admin'
+  const CALLBACK = process.env.OAUTH_CALLBACK
+
+  // 1) Si no hay code, redirijo a GitHub
+  if (!params.code) {
+    const authorizationURL = new OAuth('github')
+      .getAuthorizationURL(params.scope)
     return {
       statusCode: 302,
       headers: {
-        Location: authorizationURL,
         'Cache-Control': 'no-cache',
+        'Set-Cookie': cookie.serialize('referer', referer, {
+          httpOnly: true,
+          path: '/',
+          maxAge: 3600,
+        }),
+        Location: authorizationURL,
       },
-    };
+    }
   }
 
-  // …y en el callback final:
-  const result = await new OAuth('github').getToken(params.code, CALLBACK);
-  // redirige así al admin, sin regex complejos:
-  return {
-    statusCode: 302,
-    headers: {
-      Location: `https://sebastiandemo.netlify.app/admin#access_token=${result.token.access_token}&token_type=${result.token.token_type}`,
-      'Cache-Control': 'no-cache'
-    },
-  };
-};
+  // 2) Cuando GitHub responde con ?code=…, intercambio por token
+  try {
+    const oauth = new OAuth('github')
+    const result = await oauth.getToken(params.code, CALLBACK)
+    const { access_token, token_type } = result.token
+
+    return {
+      statusCode: 302,
+      headers: {
+        'Cache-Control': 'no-cache',
+        Location: `https://sebastiandemo.netlify.app${referer}#access_token=${access_token}&token_type=${token_type}`,
+      },
+    }
+  } catch (e) {
+    console.error('OAuth callback error:', e)
+    return {
+      statusCode: 500,
+      body: `OAuth Error: ${e.message}`,
+    }
+  }
+}
