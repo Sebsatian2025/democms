@@ -8,7 +8,7 @@ backend:
   client_secret: "$GITHUB_CLIENT_SECRET"
 
   base_url:      "https://sebastiandemo.netlify.app/.netlify/functions"
-  auth_endpoint: "auth"
+  auth_endpoint: "callback"
 
 media_folder: "assets/images"
 
@@ -25,3 +25,4 @@ collections:
           - { label: "Subtítulo",        name: "header_subtitle",   widget: "string" }
           - { label: "Texto del botón",  name: "header_button_text",widget: "string" }
           - { label: "Enlace del botón", name: "header_button_link",widget: "string" }
+
