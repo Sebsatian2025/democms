@@ -1,32 +1,48 @@
 // netlify/functions/callback.js
-import cookie from 'cookie';
-import { OAuth } from './common/oauth.js';
+import cookie from 'cookie'
+import { OAuth } from './common/oauth.js'
 
-const { SITE_URL = 'https://sebastiandemo.netlify.app' } = process.env;
+const { OAUTH_CALLBACK } = process.env
 
 export const handler = async (event) => {
-  const { code } = event.queryStringParameters;
-  const cookies = cookie.parse(event.headers.cookie || '');
-  const { provider = 'github', referer = '/admin' } = cookies;
+  const params = event.queryStringParameters || {}
+  const cookies = cookie.parse(event.headers.cookie || '')
+  const referer = cookies.referer || '/admin'
 
-  const oauth = new OAuth(provider);
+  // 1) Paso inicial: redirigir a GitHub si no hay code
+  if (!params.code) {
+    const authorizationURL = new OAuth('github').getAuthorizationURL(params.scope)
+    const setCookie = cookie.serialize('referer', referer, {
+      httpOnly: true,
+      path: '/',            // que esté disponible en toda la app
+      maxAge: 3600,
+    })
+    return {
+      statusCode: 302,
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Set-Cookie': setCookie,
+        Location: authorizationURL,
+      },
+    }
+  }
 
+  // 2) Callback: intercambiar `code` por token y redirigir al admin
   try {
-    const result = await oauth.getToken(code);
-    const { access_token, token_type } = result.token;
+    // asegúrate de tener este método en tu clase OAuth:
+    //    async getToken(code, redirect_uri) { ... }
+    const result = await new OAuth('github').getToken(params.code, OAUTH_CALLBACK)
+    const { access_token, token_type } = result.token
 
     return {
       statusCode: 302,
       headers: {
-        Location: `${SITE_URL}${referer}#access_token=${access_token}&token_type=${token_type}`,
         'Cache-Control': 'no-cache',
+        Location: `${OAUTH_CALLBACK.replace(/\/\.netlify\/functions\/callback$/, '')}${referer}#access_token=${access_token}&token_type=${token_type}`
       },
-    };
+    }
   } catch (e) {
-    console.error('OAuth callback error:', e.message);
-    return {
-      statusCode: 500,
-      body: `OAuth Server Error: ${e.message}`,
-    };
+    console.error('OAuth callback error:', e)
+    return { statusCode: 500, body: `OAuth Error: ${e.message}` }
   }
-};
+}
