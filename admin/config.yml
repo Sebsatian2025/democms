@@ -4,7 +4,8 @@ backend:
   branch: "main"
   auth_type: authorization_code
   client_id: Ov23liXrrcUpP0ly32X3
-  media_folder: "../assets/img" # <-- Ahora apunta a la carpeta de la raíz
+  # La ruta a media_folder es relativa a la raíz del sitio web publicado
+  media_folder: "assets/images"
 
   # Las siguientes líneas son necesarias para authorization_code
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
@@ -17,7 +18,7 @@ collections:
       # HEADER
       - label: "Header"
         name: "header"
-        file: "../content/header.md" # <-- También corregida la ruta para content/
+        file: "content/header.md"
         fields:
           - { label: "Imagen de fondo", name: "header_background", widget: "image" }
           - { label: "Título principal", name: "header_title", widget: "string" }
@@ -28,7 +29,7 @@ collections:
       # PORTFOLIO
       - label: "Portfolio"
         name: "portfolio"
-        file: "../content/portfolio.md" # <-- También corregida la ruta para content/
+        file: "content/portfolio.md"
         fields:
           - { label: "Imagen 1", name: "portfolio_img_1", widget: "image" }
           - { label: "Título imagen 1", name: "portfolio_title_1", widget: "string" }
@@ -42,4 +43,3 @@ collections:
           - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
           - { label: "Título imagen 4", name: "portfolio_title_4", widget: "string" }
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
-
