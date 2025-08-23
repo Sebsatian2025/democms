@@ -7,16 +7,11 @@
 
   <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-  <!-- UMD bundle (sin módulos) -->
+  <!-- Carga el ESM bundle; inyecta también el CSS internamente -->
   <script
-    src="https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/index.umd.js"
-    crossorigin="anonymous">
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/sveltia-cms.mjs">
   </script>
-
-  <!-- Estilos -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/index.css"/>
 </head>
 <body>
   <div id="nc-root"></div>
