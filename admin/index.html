@@ -1,94 +1,14 @@
 <!doctype html>
-<html>
+<html lang="es">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Content Manager</title>
+
+    <link rel="cms-config-url" href="config.yml" type="text/yaml" />
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </head>
   <body>
-
-    <!-- 0) Parche para override de passive listeners -->
-    <script>
-    ;(function() {
-      const original = EventTarget.prototype.addEventListener;
-      EventTarget.prototype.addEventListener = function(type, listener, options) {
-        if (type === 'touchstart' || type === 'touchmove') {
-          if (options == null) {
-            options = { passive: false };
-          } else if (typeof options === 'object') {
-            options.passive = false;
-          } else if (typeof options === 'boolean') {
-            options = { capture: options, passive: false };
-          }
-        }
-        return original.call(this, type, listener, options);
-      };
-    })();
-    </script>
-
-    <!-- 1) Netlify Identity -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      function initIdentity() {
-        netlifyIdentity.init()
-        netlifyIdentity.on('login',  () => window.location.href = '/admin/')
-        netlifyIdentity.on('logout', () => window.location.href = '/admin/')
-      }
-      if (window.netlifyIdentity) initIdentity()
-      else document.addEventListener('netlifyIdentityReady', initIdentity)
-    </script>
-
-    <!-- 2) Cargar React y ReactDOM antes de Decap CMS -->
-    <script
-      crossorigin
-      src="https://unpkg.com/react@17/umd/react.production.min.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
-    ></script>
-
-    <!-- 3) Cargar Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
-
-    <!-- 4) Registrar el widget “small-image” in‐line -->
-    <script>
-      ;(function waitForCMS() {
-        if (!window.CMS || typeof window.React === 'undefined') {
-          return setTimeout(waitForCMS, 100)
-        }
-
-        const CMS   = window.CMS
-        const React = window.React
-
-        // 1. Recuperar el control original de 'image'
-        const imageWidget  = CMS.getWidget('image')
-        const ImageControl = imageWidget.control
-
-        // 2. Crear un preview que aplica estilos inline
-        function SmallImagePreview({ value }) {
-          if (!value) return null
-          return React.createElement('img', {
-            src:   value,
-            style: {
-              maxWidth:     '200px',
-              height:       'auto',
-              borderRadius: '6px',
-              boxShadow:    '0 2px 6px rgba(0,0,0,0.1)',
-              marginBottom: '0.5rem'
-            },
-            alt: ''
-          })
-        }
-
-        // 3. Registrar el widget personalizado
-        CMS.registerWidget(
-          'small-image',     // nombre en tu config.yml
-          ImageControl,      // el mismo control de subida de 'image'
-          SmallImagePreview  // nuestro preview estilizado
-        )
-      })();
-    </script>
-
+    <div id="nc-root"></div> <!-- <— usa 'nc-root' como en Decap -->
   </body>
 </html>
