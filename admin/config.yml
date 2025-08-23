@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: "Sebsatian2025/democms"   # tu repo correcto
+  repo: Sebsatian2025/democms
   branch: main
-  base_url: "https://sebastiandemo.netlify.app/.netlify/functions" # punto clave
-  auth_endpoint: "auth"
+  auth_type: implicit
+  client_id: Ov23liXrrcUpP0ly32X3
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
@@ -120,6 +120,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
