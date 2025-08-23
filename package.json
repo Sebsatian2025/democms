@@ -1,7 +1,0 @@
-{
-  "name": "democms",
-  "version": "1.0.0",
-  "dependencies": {
-    "@sveltia/auth": "^0.99.1"
-  }
-}
