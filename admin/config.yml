@@ -2,7 +2,7 @@ backend:
   name: github
   repo: "Sebsatian2025/democms"
   branch: "main"
-  client_id: "Ov23liXrrcUpP0ly32X3"
+  client_id: "$SVELTIA_CLIENT_ID"
   auth_type: implicit
 
 media_folder: "img/uploads"
@@ -120,6 +120,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
