@@ -4,13 +4,18 @@ backend:
   branch: "main"
   auth_type: authorization_code
   client_id: Ov23liXrrcUpP0ly32X3
-  media_folder: "assets/images"
 
   # Las siguientes líneas son necesarias para authorization_code
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
   auth_endpoint: "auth" # <-- Cambiado a 'auth'
   # Añadida la propiedad 'callback_endpoint' para la redirección
   callback_endpoint: "callback"
+
+  # La ruta a media_folder es relativa a la raíz del repositorio
+  media_folder: "assets/images" # <- Movido aquí afuera
+
+  # La ruta a public_folder es relativa a la raíz del sitio web publicado
+  public_folder: "/assets/images" # <- Añadido para las rutas de las imágenes
 
 collections:
   - name: "site_content"
@@ -44,3 +49,4 @@ collections:
           - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
           - { label: "Título imagen 4", name: "portfolio_title_4", widget: "string" }
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
+
