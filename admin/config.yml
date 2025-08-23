@@ -2,10 +2,14 @@ backend:
   name: github
   repo: "Sebsatian2025/democms"
   branch: "main"
-  auth_type: implicit
+  auth_type: authorization_code # <-- Cambiado a authorization_code
   # Este es el ID de tu app de OAuth de GitHub.
   # El navegador puede manejarlo de forma segura.
   client_id: Ov23liXrrcUpP0ly32X3
+
+  # Las siguientes líneas son necesarias para authorization_code
+  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
+  auth_endpoint: "auth"
 
 collections:
   - name: "site_content"
