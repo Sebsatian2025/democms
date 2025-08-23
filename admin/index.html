@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Content Manager</title>
 
-    <!-- Indica dónde está la configuración del CMS -->
-    <link
-      rel="cms-config-url"
-      href="config.yml"
-      type="application/yaml"
-    />
+    <!-- Dónde está tu config -->
+    <link rel="cms-config-url" href="config.yml" type="application/yaml" />
 
-    <!-- Carga Sveltia CMS desde unpkg -->
+    <!-- El bundle oficial de Sveltia CMS -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <!-- (Opcional) estilos base de Sveltia -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"
+    />
   </head>
 
   <body>
-    <!-- Punto de montaje del panel -->
     <div id="nc-root"></div>
   </body>
 </html>
