@@ -5,7 +5,7 @@ backend:
   auth_type: implicit
   # Este es el ID de tu app de OAuth de GitHub.
   # El navegador puede manejarlo de forma segura.
-  client_id: "Ov23liXrrcUpP0ly32X3"
+  client_id: Ov23liXrrcUpP0ly32X3
 
 collections:
   - name: "site_content"
