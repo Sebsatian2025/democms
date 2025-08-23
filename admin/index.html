@@ -1,18 +1,23 @@
 <!doctype html>
-<html>
+<html lang="es">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Content Manager</title>
 
-    <!-- Carga Sveltia CMS (drop-in en lugar de Decap CMS) -->
-<script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <!-- Indica dónde está la configuración del CMS -->
+    <link
+      rel="cms-config-url"
+      href="config.yml"
+      type="application/yaml"
+    />
+
+    <!-- Carga Sveltia CMS desde unpkg -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </head>
 
   <body>
-    <!-- Punto de montaje del CMS (igual que antes) -->
+    <!-- Punto de montaje del panel -->
     <div id="nc-root"></div>
   </body>
 </html>
-
-
