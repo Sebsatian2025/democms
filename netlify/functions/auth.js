@@ -2,14 +2,12 @@
 import { URLSearchParams } from 'url'
 
 export const handler = async (event) => {
-  const { queryStringParameters, headers } = event
-  const code = queryStringParameters?.code
+  const { queryStringParameters = {}, headers } = event
+  const code = queryStringParameters.code
   const host = headers.host
-
-  // reconstruct callback URL from your OAuth App config
   const redirect_uri = `https://${host}/.netlify/functions/auth`
 
-  // PHASE 1: request authorization URL
+  // Fase 1: iniciar OAuth → devolvemos { url }
   if (!code) {
     const params = new URLSearchParams({
       client_id:     process.env.GITHUB_CLIENT_ID,
@@ -23,13 +21,13 @@ export const handler = async (event) => {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        // **authorization_url** is exactly what Sveltia's front-end is looking for
-        authorization_url: `https://github.com/login/oauth/authorize?${params}`,
+        // clave EXACTA que Sveltia busca:
+        url: `https://github.com/login/oauth/authorize?${params.toString()}`,
       }),
     }
   }
 
-  // PHASE 2: exchange code for token
+  // Fase 2: intercambio code → token → devolvemos { token }
   const tokenRes = await fetch(
     'https://github.com/login/oauth/access_token',
     {
@@ -52,7 +50,7 @@ export const handler = async (event) => {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      // **token** is exactly what Sveltia's front-end expects next
+      // clave EXACTA para que Sveltia acepte el token:
       token: { access_token, token_type },
     }),
   }
