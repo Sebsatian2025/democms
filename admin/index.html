@@ -1,21 +1,18 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Content Manager</title>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Content Manager</title>
 
-    <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
-<!-- Sveltia CMS UMD bundle desde unpkg -->
-<script
-  src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.umd.js"
-  crossorigin="anonymous"
-></script>
+  <!-- Tu config.yml -->
+  <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-<!-- Sveltia CMS CSS desde unpkg -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"
-  crossorigin="anonymous"
-/>
-
+  <!-- Carga como módulo para soportar `export` -->
+  <script type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"/>
+</head>
+<body>
+  <div id="nc-root"></div>
+</body>
+</html>
