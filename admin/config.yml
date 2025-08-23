@@ -6,8 +6,7 @@ backend:
   client_id: Ov23liXrrcUpP0ly32X3
   # Las siguientes líneas son necesarias para authorization_code
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
-  auth_endpoint: "auth"
-  callback_endpoint: "callback"
+  auth_endpoint: "callback"
 
 # Las rutas de las carpetas de medios y de publicación deben estar al mismo nivel que `backend` y `collections`
 media_folder: "assets/images"
@@ -44,3 +43,4 @@ collections:
           - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
           - { label: "Título imagen 4", name: "portfolio_title_4", widget: "string" }
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
+
