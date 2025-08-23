@@ -3,8 +3,8 @@ backend:
   repo: "Sebsatian2025/democms"
   branch: "main"
   auth_type: authorization_code
-  client_id: "$SVELTIA_CLIENT_ID"
-  client_secret: "$SVELTIA_CLIENT_SECRET"
+  client_id: "$GITHUB_CLIENT_ID"
+  client_secret: "$GITHUB_CLIENT_SECRET"
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
   auth_endpoint: "auth"
 
@@ -23,4 +23,5 @@ collections:
           - { label: "Subtítulo",          name: "header_subtitle",      widget: "string" }
           - { label: "Texto del botón",    name: "header_button_text",   widget: "string" }
           - { label: "Enlace del botón",   name: "header_button_link",   widget: "string" }
+
 
