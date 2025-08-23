@@ -5,14 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Content Manager</title>
 
-  <!-- Tu config.yml -->
   <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-  <!-- Carga como módulo para soportar `export` -->
-  <script type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <!-- ESM bundle (export/import válido) -->
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/index.js">
+  </script>
+
+  <!-- Estilos -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/index.css"/>
 </head>
 <body>
   <div id="nc-root"></div>
 </body>
 </html>
-
