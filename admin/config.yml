@@ -1,9 +1,10 @@
 backend:
-  name: git-gateway
-  branch: main # o la rama que uses en tu repo
+  name: github
+  repo: "Sebsatian2025/democms"   # <— OJO: 'repo', sin .git
+  branch: "prueba-cms"            # debe existir en GitHub
 
-media_folder: "img/uploads"     # Carpeta en el repo donde se guardan las imágenes nuevas
-public_folder: "/img/uploads"   # Ruta pública para mostrarlas en la web
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
 
 collections:
   - name: "site_content"
@@ -14,7 +15,7 @@ collections:
         name: "header"
         file: "content/header.md"
         fields:
-          - { label: "Imagen de fondo", name: "header_background", widget: "small-image" }
+          - { label: "Imagen de fondo", name: "header_background", widget: "image" }
           - { label: "Título principal", name: "header_title", widget: "string" }
           - { label: "Subtítulo", name: "header_subtitle", widget: "string" }
           - { label: "Texto del botón", name: "header_button_text", widget: "string" }
@@ -114,6 +115,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
