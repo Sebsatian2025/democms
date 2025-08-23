@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Content Manager</title>
 
-  <!-- apunta a tu config.yml -->
-  <link rel="cms-config-url" href="./config.yml" type="application/yaml"/>
+  <!-- Apunta a tu config.yml -->
+  <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-  <!-- carga el bundle ESM que inyecta CSS -->
-<script src="https://unpkg.com/@sveltia/cms@latest/dist/sveltia-cms.js"></script>
+  <!-- Aquí se importa el módulo ESM que monta TODO el CMS + OAuth -->
+  <script type="module">
+    import 'https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/sveltia-cms.mjs';
+  </script>
 </head>
 <body>
-  <!-- este es el contenedor que Sveltia busca -->
+  <!-- Contenedor donde inyecta botón de Login, panel y todo -->
   <div id="nc-root"></div>
 </body>
 </html>
-
