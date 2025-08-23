@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: stelvia
   branch: main # o la rama que uses en tu repo
 
 media_folder: "img/uploads"     # Carpeta en el repo donde se guardan las imágenes nuevas
@@ -114,6 +114,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
