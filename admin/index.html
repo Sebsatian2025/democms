@@ -6,15 +6,16 @@
     <title>Content Manager</title>
 
     <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
+<!-- Sveltia CMS UMD bundle desde unpkg -->
+<script
+  src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.umd.js"
+  crossorigin="anonymous"
+></script>
 
-    <!-- Cambia esta línea por la opción A o B -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.umd.js"></script>
-    
-    <!-- (Opcional) estilos por defecto -->
-    <link rel="stylesheet"
-          href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"/>
-  </head>
-  <body>
-    <div id="nc-root"></div>
-  </body>
-</html>
+<!-- Sveltia CMS CSS desde unpkg -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"
+  crossorigin="anonymous"
+/>
+
