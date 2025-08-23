@@ -1,9 +1,21 @@
 backend:
   name: github
-  repository: Sebsatian2025/democms
+  repository: Sebsatian2025/democms.git
   branch: prueba-cms
   auth_type: implicit
 
-media_folder: "img/uploads"
-public_folder: "/img/uploads"
+media_folder: img/uploads
+public_folder: /img/uploads
 
+collections:
+  - name: site_content
+    label: Contenido del sitio
+    files:
+      # Sólo un archivo de prueba para aislar errores
+      - label: Header
+        name: header
+        file: content/header.md
+        fields:
+          - label: Imagen de fondo
+            name: header_background
+            widget: small-image
