@@ -4,7 +4,7 @@ import { OAuth } from './common/oauth.js';
 
 export const handler = async (event) => {
   const { code } = event.queryStringParameters;
-  const { provider, referer } = cookie.parse(event.headers.cookie);
+  const { provider } = cookie.parse(event.headers.cookie);
   const oauth = new OAuth(provider);
 
   try {
@@ -14,7 +14,7 @@ export const handler = async (event) => {
     return {
       statusCode: 302,
       headers: {
-        Location: `${referer}#access_token=${access_token}&token_type=${token_type}`,
+        Location: `/admin/#access_token=${access_token}&token_type=${token_type}`,
         'Cache-Control': 'no-cache',
       },
     };
