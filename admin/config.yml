@@ -8,8 +8,9 @@ backend:
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
   auth_endpoint: "auth"
   callback_endpoint: "callback"
-  # Las rutas de las carpetas de medios y de publicación deben estar bajo 'backend'
-  media_folder: "assets/images"
+
+# Las rutas de las carpetas de medios y de publicación deben estar al mismo nivel que `backend` y `collections`
+media_folder: "assets/images"
 
 collections:
   - name: "site_content"
