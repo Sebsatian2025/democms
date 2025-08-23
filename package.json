@@ -1,16 +1,8 @@
 {
   "name": "netlify-functions",
   "version": "1.0.0",
-  "description": "Netlify functions for Sveltia CMS authentication.",
-  "main": "auth.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "type": "module",           // permite import/export
   "dependencies": {
-    "cookie": "^0.6.0",
-    "simple-oauth2": "^5.0.0"
+    "@sveltia/auth": "^0.0.6"  // última versión del handler oficial
   }
 }
