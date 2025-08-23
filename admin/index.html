@@ -1,21 +1,14 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Content Manager</title>
 
-    <!-- 1. Le digo dónde está el config -->
-    <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
-
-    <!-- 2. Cargo el bundle oficial de Sveltia CMS -->
+    <link rel="cms-config-url" href="config.yml" type="text/yaml" />
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-
-    <!-- (Opcional) estilos base -->
-    <link rel="stylesheet"
-          href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"/>
   </head>
   <body>
-    <div id="nc-root"></div>
+    <div id="nc-root"></div> <!-- <— usa 'nc-root' como en Decap -->
   </body>
 </html>
