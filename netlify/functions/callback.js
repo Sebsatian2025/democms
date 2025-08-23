@@ -1,12 +1,11 @@
 // netlify/functions/callback.js
-import { OAuth } from './common/oauth.js'   //   NECESARIO
+import { OAuth } from './common/oauth.js'
 
 export const handler = async (event) => {
-  const params = event.queryStringParameters || {}
-  const CALLBACK = process.env.OAUTH_CALLBACK
+  const code = event.queryStringParameters?.code
 
-  // 1) Si no hay "code" en la URL, redirige a GitHub para pedirlo
-  if (!params.code) {
+  // 1) Sin “code” arrancamos el flujo OAuth
+  if (!code) {
     const authorizationURL = new OAuth('github').getAuthorizationURL()
     return {
       statusCode: 302,
@@ -17,12 +16,14 @@ export const handler = async (event) => {
     }
   }
 
-  // 2) Cuando vuelves con ?code=..., intercambia por token y redirige
+  // 2) Con “code” intercambiamos por token y redirigimos sin query params
   try {
-    const result = await new OAuth('github').getToken(params.code, CALLBACK)
+    const result = await new OAuth('github').getToken(
+      code,
+      process.env.OAUTH_CALLBACK
+    )
     const { access_token, token_type } = result.token
 
-    // Aquí forzamos al /admin de tu CMS, sin undefined ni query params extra
     return {
       statusCode: 302,
       headers: {
