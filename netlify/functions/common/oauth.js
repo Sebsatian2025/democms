@@ -1,6 +1,14 @@
 // netlify/functions/common/oauth.js
 import { AuthorizationCode } from 'simple-oauth2';
 
+const {
+  GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET,
+  SITE_URL = 'https://sebastiandemo.netlify.app',
+} = process.env;
+
+const OAUTH_CALLBACK = `${SITE_URL}/.netlify/functions/callback`;
+
 export class OAuth {
   constructor(provider) {
     this.provider = provider;
@@ -23,7 +31,7 @@ export class OAuth {
 
   getAuthorizationURL(scope) {
     return this.client.authorizeURL({
-      redirect_uri: OAUTH_CALLBACK,
+      redirect_uri: OAUTH_CALLBACK, // 👈 muy importante
       scope,
     });
   }
@@ -31,12 +39,10 @@ export class OAuth {
   async getToken(code) {
     return this.client.getToken({
       code,
-      redirect_uri: OAUTH_CALLBACK,
+      redirect_uri: OAUTH_CALLBACK, // 👈 debe coincidir con lo registrado en GitHub App
     });
   }
 }
-
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, OAUTH_CALLBACK } = process.env;
 
 const OAUTH_PROVIDERS = {
   github: {
