@@ -3,6 +3,7 @@ import cookie from 'cookie';
 import { OAuth } from './common/oauth.js';
 
 const { OAUTH_PROVIDER = 'github' } = process.env;
+
 const oauth = new OAuth(OAUTH_PROVIDER);
 
 export const handler = async (event) => {
@@ -19,10 +20,13 @@ export const handler = async (event) => {
     maxAge: 3600,
   });
 
+  // Combina los encabezados Set-Cookie en una sola cadena
+  const cookieHeader = `${providerCookie}, ${refererCookie}`;
+
   return {
     statusCode: 302,
     headers: {
-      'Set-Cookie': [providerCookie, refererCookie],
+      'Set-Cookie': cookieHeader, // Ahora es una sola cadena
       Location: authorizationURL,
       'Cache-Control': 'no-cache',
     },
