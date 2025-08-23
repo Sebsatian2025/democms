@@ -1,7 +1,3 @@
 [build]
   functions = "netlify/functions"
 
-[[redirects]]
-  from = "/.netlify/functions/callback"
-  to = "/.netlify/functions/auth"
-  status = 200
