@@ -1,6 +1,6 @@
 backend:
   name: github
-  repository: Sebsatian2025/democms
+  repo: Sebsatian2025/democms
   branch: prueba-cms
   auth_type: implicit
 
@@ -100,5 +100,6 @@ collections:
           - { label: "Enlace botón 1", name: "cta_button_1_link", widget: "string" }
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
