@@ -1,22 +1,21 @@
 backend:
   name: github
-  repository: Sebsatian2025/democms
-  branch: prueba-cms
-  auth_type: implicit
+  repo: "Sebsatian2025/democms"   # <— OJO: 'repo', sin .git
+  branch: "prueba-cms"            # debe existir en GitHub
 
-media_folder: img/uploads
-public_folder: /img/uploads
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
 
 collections:
   - name: site_content
     label: Contenido del sitio
     files:
-      # Sólo un archivo de prueba para aislar errores
       - label: Header
         name: header
         file: content/header.md
         fields:
-          - label: Imagen de fondo
-            name: header_background
-            widget: small-image
-
+          - { label: "Imagen de fondo", name: "header_background", widget: "image" } # <— usa 'image', no 'small-image'
+          - { label: "Título principal", name: "header_title", widget: "string" }
+          - { label: "Subtítulo", name: "header_subtitle", widget: "string" }
+          - { label: "Texto del botón", name: "header_button_text", widget: "string" }
+          - { label: "Enlace del botón", name: "header_button_link", widget: "string" }
