@@ -2,9 +2,9 @@ backend:
   name: github
   repo: "Sebsatian2025/democms"
   branch: "main"
-  auth_type: authorization_code # <-- Cambiado a authorization_code
+  auth_type: authorization_code
   client_id: Ov23liXrrcUpP0ly32X3
-  media_folder: "assets/images" # <-- Añadida la carpeta de medios
+  media_folder: "assets/images"
 
   # Las siguientes líneas son necesarias para authorization_code
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
