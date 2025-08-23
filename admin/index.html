@@ -2,28 +2,19 @@
 <html lang="es">
   <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1"/>
     <title>Content Manager</title>
 
-    <!-- 1) Indica al CMS dónde está tu configuración -->
-    <link
-      rel="cms-config-url"
-      href="/admin/config.yml"
-      type="application/yaml"
-    />
+    <!-- Indica dónde está tu config (ruta relativa) -->
+    <link rel="cms-config-url"
+          href="config.yml"
+          type="application/yaml"/>
 
-    <!-- 2) Carga el bundle oficial de Sveltia CMS -->
+    <!-- Bundle oficial de Sveltia CMS -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-
-    <!-- 3) (Opcional) Estilos base de Sveltia -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"
-    />
   </head>
-
   <body>
-    <!-- Punto de montaje: la UI de Sveltia se inyecta aquí -->
     <div id="nc-root"></div>
   </body>
 </html>
