@@ -1,6 +1,6 @@
 backend:
   name: github
-  repository: Sebsatian2025/democms.git
+  repository: Sebsatian2025/democms
   branch: prueba-cms
   auth_type: implicit
 
@@ -19,3 +19,4 @@ collections:
           - label: Imagen de fondo
             name: header_background
             widget: small-image
+
