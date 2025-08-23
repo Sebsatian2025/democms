@@ -1,8 +1,10 @@
 backend:
   name: github
-  repo: "Sebsatian2025/democms"   # 'repo', sin .git
-  branch: "main"                  # debe existir en GitHub
-  client_id: "$SVELTIA_CLIENT_ID"  # tu client ID de GitHub App
+  repo: "Sebsatian2025/democms"   # sin .git
+  branch: "main"                   # la rama que vas a usar
+  auth_type: implicit
+  client_id: SVELTIA_CLIENT_ID     # tu Client ID de la GitHub App
+  # Stelvia manejará la autenticación directamente
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
@@ -41,4 +43,5 @@ collections:
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
 
       # ... El resto de collections igual que tu config original
+
 
