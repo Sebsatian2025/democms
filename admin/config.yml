@@ -2,7 +2,7 @@ backend:
   name: github
   repo: "Sebsatian2025/democms"   # 'repo', sin .git
   branch: "main"                  # debe existir en GitHub
-  client_id: "Ov23liXrrcUpP0ly32X3"  # tu client ID de GitHub App
+  client_id: "$SVELTIA_CLIENT_ID"  # tu client ID de GitHub App
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
@@ -41,3 +41,4 @@ collections:
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
 
       # ... El resto de collections igual que tu config original
+
