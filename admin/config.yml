@@ -1,6 +1,8 @@
 backend:
   name: github
-  branch: main # o la rama que uses en tu repo
+  repository: Sebsatian2025/democms.git
+  branch: prueba-cms
+  auth_type: implicit
 
 media_folder: "img/uploads"     # Carpeta en el repo donde se guardan las imágenes nuevas
 public_folder: "/img/uploads"   # Ruta pública para mostrarlas en la web
@@ -114,6 +116,7 @@ collections:
 
           - { label: "Texto botón 2", name: "cta_button_2_text", widget: "string" }
           - { label: "Enlace botón 2", name: "cta_button_2_link", widget: "string" }
+
 
 
 
