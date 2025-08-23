@@ -1,5 +1,5 @@
 // netlify/functions/callback.js
-import { OAuth } from './common/oauth.js'   //  IMPORT NECESARIO
+import { OAuth } from './common/oauth.js'   //   NECESARIO
 
 export const handler = async (event) => {
   const params = event.queryStringParameters || {}
