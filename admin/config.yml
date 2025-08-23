@@ -7,6 +7,7 @@ backend:
   # Las siguientes líneas son necesarias para authorization_code
   base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
   auth_endpoint: "auth"
+  callback_endpoint: "callback"
 
 # La ruta a media_folder es relativa a la raíz del repositorio
 media_folder: "assets/images" # <- Movido aquí afuera
@@ -46,5 +47,6 @@ collections:
           - { label: "Imagen 4", name: "portfolio_img_4", widget: "image" }
           - { label: "Título imagen 4", name: "portfolio_title_4", widget: "string" }
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
+
 
 
