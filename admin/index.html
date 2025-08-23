@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Content Manager</title>
 
-    <!-- Dónde está tu config -->
-    <link rel="cms-config-url" href="config.yml" type="application/yaml" />
+    <!-- 1) Dile al CMS dónde está tu config -->
+    <link
+      rel="cms-config-url"
+      href="config.yml"
+      type="application/yaml"
+    />
 
-    <!-- El bundle oficial de Sveltia CMS -->
+    <!-- 2) Reemplaza Decap/Netlify CMS por el bundle oficial de Sveltia -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-    <!-- (Opcional) estilos base de Sveltia -->
+
+    <!-- 3) (Opcional) Estilos base de Sveltia -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"
@@ -18,6 +23,7 @@
   </head>
 
   <body>
+    <!-- Aquí monta Sveltia toda la UI -->
     <div id="nc-root"></div>
   </body>
 </html>
