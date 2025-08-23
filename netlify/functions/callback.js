@@ -1,42 +1,33 @@
 // netlify/functions/callback.js
-import cookie from 'cookie'
-import { OAuth } from './common/oauth.js'      //  Esto faltaba
+import { OAuth } from './common/oauth.js'   //  IMPORT NECESARIO
 
 export const handler = async (event) => {
   const params = event.queryStringParameters || {}
-  const cookies = cookie.parse(event.headers.cookie || '')
-  const referer = cookies.referer || '/admin'
   const CALLBACK = process.env.OAUTH_CALLBACK
 
-  // 1) Si no hay code, redirijo a GitHub
+  // 1) Si no hay "code" en la URL, redirige a GitHub para pedirlo
   if (!params.code) {
-    const authorizationURL = new OAuth('github')
-      .getAuthorizationURL(params.scope)
+    const authorizationURL = new OAuth('github').getAuthorizationURL()
     return {
       statusCode: 302,
       headers: {
-        'Cache-Control': 'no-cache',
-        'Set-Cookie': cookie.serialize('referer', referer, {
-          httpOnly: true,
-          path: '/',
-          maxAge: 3600,
-        }),
         Location: authorizationURL,
+        'Cache-Control': 'no-cache',
       },
     }
   }
 
-  // 2) Cuando GitHub responde con ?code=…, intercambio por token
+  // 2) Cuando vuelves con ?code=..., intercambia por token y redirige
   try {
-    const oauth = new OAuth('github')
-    const result = await oauth.getToken(params.code, CALLBACK)
+    const result = await new OAuth('github').getToken(params.code, CALLBACK)
     const { access_token, token_type } = result.token
 
+    // Aquí forzamos al /admin de tu CMS, sin undefined ni query params extra
     return {
       statusCode: 302,
       headers: {
+        Location: `https://sebastiandemo.netlify.app/admin#access_token=${access_token}&token_type=${token_type}`,
         'Cache-Control': 'no-cache',
-        Location: `https://sebastiandemo.netlify.app${referer}#access_token=${access_token}&token_type=${token_type}`,
       },
     }
   } catch (e) {
