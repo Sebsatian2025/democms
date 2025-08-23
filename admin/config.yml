@@ -2,11 +2,15 @@ backend:
   name: github
   repo: "Sebsatian2025/democms"
   branch: "main"
-  client_id: "Ov23liXrrcUpP0ly32X3"
-  auth_type: implicit
+  auth_type: authorization_code
 
-media_folder: "img/uploads"
-public_folder: "/img/uploads"
+  # Inyectadas por Netlify en la función, no se exponen al navegador
+  client_id: "$SVELTIA_CLIENT_ID"
+  client_secret: "$SVELTIA_CLIENT_SECRET"
+
+  # Tu dominio + path a netlify/functions
+  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
+  auth_endpoint: "auth"
 
 collections:
   - name: "site_content"
@@ -42,6 +46,7 @@ collections:
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
 
       # ... El resto de collections igual que tu config original
+
 
 
 
