@@ -1,21 +1,20 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Content Manager</title>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Content Manager</title>
+    <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-  <!-- Configuración de Stelvia CMS -->
-  <link rel="cms-config-url" href="config.yml" type="application/yaml" />
-
-  <!-- Bundle oficial de Stelvia CMS -->
-  <script src="https://unpkg.com/@sveltia/cms@0.8.0/dist/sveltia-cms.js"></script></head>
-<body>
-  <!-- Contenedor correcto para Stelvia -->
-  <div id="sveltia-cms"></div>
-</body>
-
+    <!-- Cambia esta línea por la opción A o B -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.umd.js"></script>
+    
+    <!-- (Opcional) estilos por defecto -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.css"/>
+  </head>
+  <body>
+    <div id="nc-root"></div>
+  </body>
 </html>
-
-
