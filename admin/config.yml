@@ -3,12 +3,9 @@ backend:
   repo: "Sebsatian2025/democms"
   branch: "main"
   auth_type: implicit
+  # Este es el ID de tu app de OAuth de GitHub.
+  # El navegador puede manejarlo de forma segura.
   client_id: "Ov23liXrrcUpP0ly32X3"
-
-
-  # Tu dominio + path a netlify/functions
-  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
-  auth_endpoint: "auth"
 
 collections:
   - name: "site_content"
@@ -44,14 +41,3 @@ collections:
           - { label: "Descripción imagen 4", name: "portfolio_desc_4", widget: "string" }
 
       # ... El resto de collections igual que tu config original
-
-
-
-
-
-
-
-
-
-
-
