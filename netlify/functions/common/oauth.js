@@ -1,4 +1,4 @@
-import { AuthorizationCode } from 'simple-oauth2';
+import { AuthorizationCode } from 'simple-oauth2'
 
 export class OAuth {
   constructor(provider) {
@@ -12,13 +12,22 @@ export class OAuth {
         authorizePath: '/login/oauth/authorize',
         tokenPath: '/login/oauth/access_token',
       },
-    });
+    })
   }
 
-  getAuthorizationURL(scope = 'user:email') {
+  getAuthorizationURL(scope = 'repo') {
     return this.client.authorizeURL({
-      redirect_uri: process.env.OAUTH_CALLBACK, // 👈 este debe ser idéntico al configurado en GitHub
+      redirect_uri: process.env.OAUTH_CALLBACK,
       scope,
-    });
+      state: Math.random().toString(36).slice(2),
+      allow_signup: 'false',
+    })
+  }
+
+  async getToken(code, redirect_uri) {
+    return this.client.getToken({
+      code,
+      redirect_uri,
+    })
   }
 }
