@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Content Manager</title>
 
-  <!-- Apunta a tu config.yml -->
+  <!-- apunta a tu configuración -->
   <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-  <!-- Aquí se importa el módulo ESM que monta TODO el CMS + OAuth -->
-  <script type="module">
-    import 'https://cdn.jsdelivr.net/npm/@sveltia/cms@latest/dist/sveltia-cms.mjs';
+  <!-- carga explícita v0.39.17 para evitar el bug de pantalla blanca -->
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.39.17/dist/sveltia-cms.mjs">
   </script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.39.17/dist/sveltia-cms.css"/>
 </head>
 <body>
-  <!-- Contenedor donde inyecta botón de Login, panel y todo -->
   <div id="nc-root"></div>
 </body>
 </html>
