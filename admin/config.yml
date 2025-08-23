@@ -1,8 +1,9 @@
 backend:
   name: github
-  repo: Sebsatian2025/democms
+  repository: Sebsatian2025/democms
   branch: prueba-cms
   auth_type: implicit
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
+
