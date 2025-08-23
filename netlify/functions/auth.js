@@ -1,8 +1,8 @@
 // netlify/functions/auth.js
-const { handler } = require('@sveltia/auth/netlify')
+import { handler } from '@sveltia/auth/netlify'
 
-exports.handler = handler({
+export const handler = handler({
   clientId:     process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  hostname:     'sebastiandemo.netlify.app',
+  hostname:     'sebastiandemo.netlify.app', // SIN https:// ni slash final
 })
