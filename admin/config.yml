@@ -1,41 +1,24 @@
-// netlify/functions/callback.js
-import { OAuth } from './common/oauth.js'
+backend:
+  name: github
+  repo: "Sebsatian2025/democms"
+  branch: "main"
+  auth_type: authorization_code
+  client_id: "Ov23liXrrcUpP0ly32X3"
+  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
+  auth_endpoint: "callback"
 
-export const handler = async (event) => {
-  const code = event.queryStringParameters?.code
+media_folder: "assets/images"
 
-  // 1) Sin “code” arrancamos el flujo OAuth
-  if (!code) {
-    const authorizationURL = new OAuth('github').getAuthorizationURL()
-    return {
-      statusCode: 302,
-      headers: {
-        Location: authorizationURL,
-        'Cache-Control': 'no-cache',
-      },
-    }
-  }
-
-  // 2) Con “code” intercambiamos por token y redirigimos sin query params
-  try {
-    const result = await new OAuth('github').getToken(
-      code,
-      process.env.OAUTH_CALLBACK
-    )
-    const { access_token, token_type } = result.token
-
-    return {
-      statusCode: 302,
-      headers: {
-        Location: `https://sebastiandemo.netlify.app/admin#access_token=${access_token}&token_type=${token_type}`,
-        'Cache-Control': 'no-cache',
-      },
-    }
-  } catch (e) {
-    console.error('OAuth callback error:', e)
-    return {
-      statusCode: 500,
-      body: `OAuth Error: ${e.message}`,
-    }
-  }
-}
+collections:
+  - name: "site_content"
+    label: "Contenido del sitio"
+    files:
+      - label: "Header"
+        name: "header"
+        file: "content/header.md"
+        fields:
+          - { label: "Imagen de fondo",    name: "header_background",    widget: "image"  }
+          - { label: "Título principal",   name: "header_title",         widget: "string" }
+          - { label: "Subtítulo",          name: "header_subtitle",      widget: "string" }
+          - { label: "Texto del botón",    name: "header_button_text",   widget: "string" }
+          - { label: "Enlace del botón",   name: "header_button_link",   widget: "string" }
