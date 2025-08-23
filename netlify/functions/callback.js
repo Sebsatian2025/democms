@@ -14,7 +14,7 @@ export const handler = async (event) => {
     return {
       statusCode: 302,
       headers: {
-        Location: `/admin/#access_token=${access_token}&token_type=${token_type}`,
+        Location: `https://sebastiandemo.netlify.app/admin/#access_token=${access_token}&token_type=${token_type}`,
         'Cache-Control': 'no-cache',
       },
     };
