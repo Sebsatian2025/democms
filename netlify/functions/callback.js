@@ -1,6 +1,6 @@
 // netlify/functions/callback.js
 import cookie from 'cookie'
-import { OAuth } from './common/oauth.js'      // 🔥 Esto faltaba
+import { OAuth } from './common/oauth.js'      //  Esto faltaba
 
 export const handler = async (event) => {
   const params = event.queryStringParameters || {}
