@@ -2,7 +2,6 @@ backend:
   name: github
   repo: "Sebastian2025/democms"
   branch: "main"
-  auth_type: implicit
   client_id: "${GITHUB_CLIENT_ID}"
 
 media_folder: "assets/images"
@@ -21,6 +20,7 @@ collections:
           - { label: "Subtítulo",        name: "header_subtitle",   widget: "string" }
           - { label: "Texto del botón",  name: "header_button_text",widget: "string" }
           - { label: "Enlace del botón", name: "header_button_link",widget: "string" }
+
 
 
 
