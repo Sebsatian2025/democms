@@ -1,6 +1,12 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: github
+  repo: "Sebastian2025/democms"
+  branch: "main"
+  auth_type: authorization_code    # o "implicit" si prefieres el flujo sin servidor
+  client_id: "${GITHUB_CLIENT_ID}"
+  client_secret: "${GITHUB_CLIENT_SECRET}"
+  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
+  auth_endpoint: "auth"
 
 media_folder: "assets/images"
 public_folder: "/images"
