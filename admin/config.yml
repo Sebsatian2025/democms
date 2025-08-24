@@ -2,13 +2,16 @@ backend:
   name: github
   repo: "Sebastian2025/democms"
   branch: "main"
-  auth_type: authorization_code    # o "implicit" si prefieres el flujo sin servidor
-  client_id: "${GITHUB_CLIENT_ID}"
-  client_secret: "${GITHUB_CLIENT_SECRET}"
-  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
-  auth_endpoint: "auth"
 
-media_folder: "assets/images"
+  auth_type: authorization_code
+  base_url:   "https://sebastiandemo.netlify.app/.netlify/functions"
+  auth_endpoint:  "auth"
+  token_endpoint: "callback"
+
+  client_id:     "${GITHUB_CLIENT_ID}"
+  client_secret: "${GITHUB_CLIENT_SECRET}"
+
+media_folder:  "assets/images"
 public_folder: "/images"
 
 collections:
@@ -24,3 +27,4 @@ collections:
           - { label: "Subtítulo",        name: "header_subtitle",   widget: "string" }
           - { label: "Texto del botón",  name: "header_button_text",widget: "string" }
           - { label: "Enlace del botón", name: "header_button_link",widget: "string" }
+
