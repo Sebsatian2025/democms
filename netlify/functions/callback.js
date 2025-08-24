@@ -18,17 +18,17 @@ exports.handler = async (event) => {
     const token_type   = result.token.token_type;
 
     const tokenCookie = cookie.serialize('jwt', access_token, {
-      httpOnly: false,
-      path:     '/',
-      maxAge:   3600,
-      sameSite: 'lax'
+      httpOnly:   false,
+      path:       '/',
+      maxAge:     3600,
+      sameSite:   'lax'
     });
 
     return {
       statusCode: 302,
       headers: {
-        'Set-Cookie':    tokenCookie,
-        Location:        `/admin/#access_token=${access_token}&token_type=${token_type}`,
+        'Set-Cookie':   tokenCookie,
+        Location:       `/admin/#access_token=${access_token}&token_type=${token_type}`,
         'Cache-Control': 'no-cache'
       }
     };
@@ -37,3 +37,4 @@ exports.handler = async (event) => {
     return { statusCode: 500, body: 'Server Error' };
   }
 };
+
