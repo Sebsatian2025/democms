@@ -1,3 +1,4 @@
+// netlify/functions/callback.js
 const cookie = require('cookie');
 const { OAuth } = require('./common/oauth.js');
 
@@ -8,7 +9,7 @@ exports.handler = async (event) => {
   if (!ck.provider) {
     return { statusCode: 400, body: 'Provider missing' };
   }
-  const referer = ck.referer || '/admin/';
+  const redirectUri = ck.redirect_uri || '/admin/';
 
   const oauth = new OAuth(ck.provider);
 
@@ -17,10 +18,6 @@ exports.handler = async (event) => {
     const jwt  = token.access_token;
     const tipo = token.token_type;
 
-    // Entregamos un HTML que:
-    // 1) guarda la cookie (SSR/fetch)
-    // 2) inyecta sessionStorage + localStorage
-    // 3) redirige limpio al admin
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'text/html' },
@@ -29,23 +26,33 @@ exports.handler = async (event) => {
 <html><head><meta charset="utf-8"><title>Autenticando…</title></head>
 <body>
 <script>
-  // 1) Cookie para el server
+  // 1) Guarda cookie para fetch/SSR
   document.cookie = 'jwt=${jwt}; path=/; max-age=3600; sameSite=lax';
 
-  // 2) Sveltia lee el token desde storage
-  sessionStorage.setItem('access_token', '${jwt}');
-  sessionStorage.setItem('token_type', '${tipo}');
-  localStorage.setItem('access_token', '${jwt}');
-  localStorage.setItem('token_type', '${tipo}');
+  // 2) Función para inyectar el token en una ventana dada
+  function setToken(win) {
+    win.sessionStorage.setItem('access_token', '${jwt}');
+    win.sessionStorage.setItem('token_type', '${tipo}');
+    win.localStorage.setItem('access_token', '${jwt}');
+    win.localStorage.setItem('token_type', '${tipo}');
+  }
 
-  // 3) Volvemos al admin sin query ni hash
-  window.location.replace('${referer}');
+  // 3) Si estamos en un popup, comunicamos al padre y cerramos el popup
+  if (window.opener && !window.opener.closed) {
+    setToken(window.opener);
+    window.opener.location.replace('${redirectUri}#access_token=${jwt}');
+    window.close();
+  } else {
+    // Fallback si no hay opener
+    setToken(window);
+    window.location.replace('${redirectUri}#access_token=${jwt}');
+  }
 </script>
 </body></html>
       `
     };
   } catch (e) {
     console.error(e);
-    return { statusCode: 500, body: 'Error en servidor' };
+    return { statusCode: 500, body: 'Server Error' };
   }
 };
