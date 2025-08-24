@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Content Manager</title>
 
-  <!-- apunta a tu configuración -->
+  <!-- Decimos dónde está tu config -->
   <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-  <!-- carga explícita v0.39.17 para evitar el bug de pantalla blanca -->
+  <!-- IMPORTA SOLO EL MÓDULO ESM: él inyecta su propio CSS -->
   <script
     type="module"
-    src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.39.17/dist/sveltia-cms.mjs">
+    src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.99.1/dist/sveltia-cms.mjs">
   </script>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.39.17/dist/sveltia-cms.css"/>
 </head>
 <body>
   <div id="nc-root"></div>
