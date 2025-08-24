@@ -5,7 +5,7 @@ import { OAuth } from './common/oauth.js';
 export const handler = async (event) => {
   const { code } = event.queryStringParameters;
 
-  // Leemos la cookie del provider
+  // Leemos la cookie del provider que guardamos en /auth
   const { provider } = cookie.parse(event.headers.cookie || '');
   if (!provider) {
     return {
@@ -21,14 +21,15 @@ export const handler = async (event) => {
     const { token } = await oauth.getToken(code);
     const { access_token, token_type } = token;
 
-    // Guardar cookie de access_token para futuras validaciones
-    const tokenCookie = cookie.serialize('access_token', access_token, {
-      httpOnly: true,
+    // Guardar cookie de jwt (no HttpOnly) para que Sveltia pueda leerla
+    const tokenCookie = cookie.serialize('jwt', access_token, {
+      httpOnly: false,
       path: '/',
       maxAge: 3600,
+      sameSite: 'lax'
     });
 
-    // Redirigimos al admin de Sveltia con el token
+    // Redirigimos al admin de Sveltia con el fragmento como antes
     return {
       statusCode: 302,
       headers: {
@@ -42,6 +43,10 @@ export const handler = async (event) => {
     return {
       statusCode: 500,
       body: 'Server Error',
+    };
+  }
+};
+
     };
   }
 };
