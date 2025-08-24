@@ -2,7 +2,10 @@ backend:
   name: github
   repo: "Sebastian2025/democms"
   branch: "main"
+  auth_type: authorization_code
   base_url: "https://sveltia-cms-prueba.kitdelanzamientodigital.workers.dev"
+  auth_endpoint: "auth"
+  token_endpoint: "callback"
 
 media_folder: "assets/images"
 public_folder: "/images"
@@ -20,6 +23,7 @@ collections:
           - { label: "Subtítulo",        name: "header_subtitle",   widget: "string" }
           - { label: "Texto del botón",  name: "header_button_text",widget: "string" }
           - { label: "Enlace del botón", name: "header_button_link",widget: "string" }
+
 
 
 
