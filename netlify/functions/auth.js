@@ -1,52 +1,39 @@
+// netlify/functions/auth.js
 const cookie = require('cookie');
 const { OAuth } = require('./common/oauth.js');
-
 const oauth = new OAuth(process.env.OAUTH_PROVIDER || 'github');
 
 exports.handler = async (event) => {
-  // Sveltia no pasa referer, siempre volvemos a /admin/
-  const referer = '/admin/';
+  // Sveltia pasa provider, site_id, scope y redirect_uri
+  const redirectUri = event.queryStringParameters.redirect_uri || '/admin/';
 
-  // Si ya hay jwt en cookie, devolvemos hash para que Sveltia lo procese
-  const headerCookie = event.headers.cookie || '';
-  const existing    = headerCookie.match(/jwt=([^;]+)/)?.[1];
+  // Si ya hay token, reenvío con hash
+  const existing = event.headers.cookie?.match(/jwt=([^;]+)/)?.[1];
   if (existing) {
     return {
       statusCode: 302,
       headers: {
-        Location: `${referer}#access_token=${existing}`
+        Location: `${redirectUri}#access_token=${existing}`
       }
     };
   }
 
-  // Iniciamos OAuth
+  // Lanzamos OAuth y guardamos provider + redirect_uri en cookie
   const scope = 'public_repo read:user';
   const authURL = oauth.getAuthorizationURL(scope);
 
-  // Guardamos provider + referer
   const cookies = [
     cookie.serialize('provider', oauth.provider, {
-      httpOnly: true,
-      path:     '/',
-      maxAge:   3600,
-      sameSite: 'lax'
+      httpOnly: true, path: '/', maxAge: 3600, sameSite: 'lax'
     }),
-    cookie.serialize('referer',  referer, {
-      httpOnly: true,
-      path:     '/',
-      maxAge:   3600,
-      sameSite: 'lax'
+    cookie.serialize('redirect_uri', redirectUri, {
+      httpOnly: true, path: '/', maxAge: 3600, sameSite: 'lax'
     })
   ];
 
   return {
     statusCode: 302,
-    multiValueHeaders: {
-      'Set-Cookie': cookies,
-      'Cache-Control': ['no-cache']
-    },
-    headers: {
-      Location: authURL
-    }
+    multiValueHeaders: { 'Set-Cookie': cookies, 'Cache-Control': ['no-cache'] },
+    headers: { Location: authURL }
   };
 };
