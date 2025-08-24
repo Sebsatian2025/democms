@@ -9,7 +9,7 @@ export const handler = async (event) => {
   const { referer = '/' } = event.queryStringParameters;
 
   // Definimos los permisos que necesitamos
-  const scope = 'public_repo read:user';
+  const scope = 'repo read:user';
 
   // Generamos la URL de autorización de GitHub
   const authorizationURL = oauth.getAuthorizationURL(scope);
