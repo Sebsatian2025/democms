@@ -3,15 +3,12 @@ backend:
   repo: "Sebsatian2025/democms"
   branch: "main"
   auth_type: authorization_code
-
-  client_id:     "$GITHUB_CLIENT_ID"
+  client_id: "$GITHUB_CLIENT_ID"
   client_secret: "$GITHUB_CLIENT_SECRET"
-
-  base_url:      "https://sebastiandemo.netlify.app/.netlify/functions"
+  base_url: "https://sebastiandemo.netlify.app/.netlify/functions"
   auth_endpoint: "auth"
 
 media_folder: "assets/images"
-
 collections:
   - name: "site_content"
     label: "Contenido del sitio"
@@ -21,9 +18,7 @@ collections:
         file: "content/header.md"
         fields:
           - { label: "Imagen de fondo",  name: "header_background", widget: "image"  }
-          - { label: "Título principal", name: "header_title",      widget: "string" }
-          - { label: "Subtítulo",        name: "header_subtitle",   widget: "string" }
-          - { label: "Texto del botón",  name: "header_button_text",widget: "string" }
-          - { label: "Enlace del botón", name: "header_button_link",widget: "string" }
-
-
+          - { label: "Título principal", name: "header_title", widget: "string" }
+          - { label: "Subtítulo", name: "header_subtitle", widget: "string" }
+          - { label: "Texto del botón", name: "header_button_text", widget: "string" }
+          - { label: "Enlace del botón", name: "header_button_link", widget: "string" }
