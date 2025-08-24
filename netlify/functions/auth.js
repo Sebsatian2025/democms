@@ -6,8 +6,8 @@ const { OAUTH_PROVIDER = 'github' } = process.env;
 const oauth = new OAuth(OAUTH_PROVIDER);
 
 export const handler = async (event) => {
-  // Revisar si ya hay token en la cookie para no iniciar OAuth de nuevo
-  const tokenCookie = event.headers.cookie?.match(/access_token=([^;]+)/)?.[1];
+  // Revisar si ya hay jwt en la cookie para no reiniciar OAuth
+  const tokenCookie = event.headers.cookie?.match(/jwt=([^;]+)/)?.[1];
   if (tokenCookie) {
     return {
       statusCode: 302,
@@ -23,14 +23,15 @@ export const handler = async (event) => {
   // Permisos requeridos
   const scope = 'public_repo read:user';
 
-  // URL de autorización de GitHub
+  // Generar URL de autorización de GitHub
   const authorizationURL = oauth.getAuthorizationURL(scope);
 
-  // Guardar cookie del provider con path '/' para todo el dominio
+  // Guardar cookie del provider para luego recuperar en callback
   const providerCookie = cookie.serialize('provider', OAUTH_PROVIDER, {
     httpOnly: true,
-    path: '/', 
+    path: '/',
     maxAge: 3600,
+    sameSite: 'lax'
   });
 
   return {
@@ -38,6 +39,11 @@ export const handler = async (event) => {
     headers: {
       'Set-Cookie': providerCookie,
       Location: authorizationURL,
+      'Cache-Control': 'no-cache',
+    },
+  };
+};
+
       'Cache-Control': 'no-cache',
     },
   };
