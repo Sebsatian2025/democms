@@ -1,31 +1,28 @@
-// netlify/functions/auth.js
-const cookie = require('cookie');
-const { OAuth } = require('./common/oauth.js');
-const oauth = new OAuth(process.env.OAUTH_PROVIDER || 'github');
+const cookie = require('cookie')
+const { OAuth } = require('./common/oauth.js')
+const oauth = new OAuth(process.env.OAUTH_PROVIDER || 'github')
 
 exports.handler = async (event) => {
-  // Sveltia siempre manda redirect_uri
-  const redirectUri = event.queryStringParameters.redirect_uri || '/admin/';
+  // Sveltia pasa provider, site_id y scope
+  const { provider, site_id, scope } = event.queryStringParameters
+  const redirectUri = `${event.headers['x-forwarded-proto']}://${event.headers.host}/.netlify/functions/callback`
 
-  // Generamos la URL de GitHub y guardamos provider + redirect_uri
-  const authURL = oauth.getAuthorizationURL('public_repo read:user');
+  // arrancamos OAuth y guardamos provider + redirectUri
+  const authURL = oauth
+    .getAuthorizationURL(scope)
+    .replace(
+      encodeURIComponent(process.env.OAUTH_CALLBACK),
+      encodeURIComponent(redirectUri)
+    )
+
   const cookies = [
-    cookie.serialize('provider', oauth.provider, {
-      httpOnly: true, path: '/', maxAge: 3600, sameSite: 'lax'
-    }),
-    cookie.serialize('redirect_uri', redirectUri, {
-      httpOnly: true, path: '/', maxAge: 3600, sameSite: 'lax'
-    })
-  ];
+    cookie.serialize('provider', provider,  { httpOnly: true, path: '/', maxAge: 600 }),
+    cookie.serialize('redirectUri', redirectUri, { httpOnly: true, path: '/', maxAge: 600 }),
+  ]
 
   return {
     statusCode: 302,
-    multiValueHeaders: {
-      'Set-Cookie': cookies,
-      'Cache-Control': ['no-cache']
-    },
-    headers: {
-      Location: authURL
-    }
-  };
-};
+    multiValueHeaders: { 'Set-Cookie': cookies },
+    headers: { Location: authURL }
+  }
+}
