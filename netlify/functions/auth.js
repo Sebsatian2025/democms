@@ -12,7 +12,7 @@ export const handler = async (event) => {
 
   const providerCookie = cookie.serialize('provider', OAUTH_PROVIDER, {
     httpOnly: true,
-    path: '/.netlify/functions/callback',
+    path: '/',
     maxAge: 3600,
   });
 
