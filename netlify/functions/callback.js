@@ -10,7 +10,6 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: 'Provider missing' };
   }
   const redirectUri = ck.redirect_uri || '/admin/';
-
   const oauth = new OAuth(ck.provider);
 
   try {
@@ -26,10 +25,7 @@ exports.handler = async (event) => {
 <html><head><meta charset="utf-8"><title>Autenticando…</title></head>
 <body>
 <script>
-  // 1) Guarda cookie para fetch/SSR
-  document.cookie = 'jwt=${jwt}; path=/; max-age=3600; sameSite=lax';
-
-  // 2) Función para inyectar el token en una ventana dada
+  // 1) Inyecta token en Storage de la ventana padre
   function setToken(win) {
     win.sessionStorage.setItem('access_token', '${jwt}');
     win.sessionStorage.setItem('token_type', '${tipo}');
@@ -37,13 +33,12 @@ exports.handler = async (event) => {
     win.localStorage.setItem('token_type', '${tipo}');
   }
 
-  // 3) Si estamos en un popup, comunicamos al padre y cerramos el popup
   if (window.opener && !window.opener.closed) {
     setToken(window.opener);
+    // 2) Redirige al padre con el hash
     window.opener.location.replace('${redirectUri}#access_token=${jwt}');
     window.close();
   } else {
-    // Fallback si no hay opener
     setToken(window);
     window.location.replace('${redirectUri}#access_token=${jwt}');
   }
