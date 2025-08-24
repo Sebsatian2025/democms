@@ -1,23 +1,36 @@
 // netlify/functions/common/oauth.js
 import { AuthorizationCode } from 'simple-oauth2';
 
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, OAUTH_CALLBACK } = process.env;
+
+const OAUTH_PROVIDERS = {
+  github: {
+    client_id: GITHUB_CLIENT_ID,
+    client_secret: GITHUB_CLIENT_SECRET,
+    url: 'https://github.com',
+  },
+};
+
 export class OAuth {
   constructor(provider) {
     this.provider = provider;
     const {
       [provider]: { client_id, client_secret, url },
     } = OAUTH_PROVIDERS;
+
+    if (!client_id || !client_secret) {
+      throw new Error(`Missing OAuth config for provider ${provider}`);
+    }
+
     const config = {
-      client: {
-        id: client_id,
-        secret: client_secret,
-      },
+      client: { id: client_id, secret: client_secret },
       auth: {
         tokenHost: url,
         tokenPath: '/login/oauth/access_token',
         authorizePath: '/login/oauth/authorize',
       },
     };
+
     this.client = new AuthorizationCode(config);
   }
 
@@ -36,12 +49,3 @@ export class OAuth {
   }
 }
 
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, OAUTH_CALLBACK } = process.env;
-
-const OAUTH_PROVIDERS = {
-  github: {
-    client_id: GITHUB_CLIENT_ID,
-    client_secret: GITHUB_CLIENT_SECRET,
-    url: 'https://github.com',
-  },
-};
