@@ -4,36 +4,45 @@ import { OAuth } from './common/oauth.js';
 
 export const handler = async (event) => {
   const { code } = event.queryStringParameters;
+
+  // Leemos la cookie del provider
   const { provider } = cookie.parse(event.headers.cookie || '');
   if (!provider) {
-    return { statusCode: 400, body: 'Provider not found in cookie' };
+    return {
+      statusCode: 400,
+      body: 'Provider not found in cookie',
+    };
   }
 
   const oauth = new OAuth(provider);
 
   try {
+    // Obtenemos el token de GitHub usando el código recibido
     const { token } = await oauth.getToken(code);
     const { access_token, token_type } = token;
 
+    // Guardar cookie de access_token para futuras validaciones
+    const tokenCookie = cookie.serialize('access_token', access_token, {
+      httpOnly: true,
+      path: '/',
+      maxAge: 3600,
+    });
+
+    // Redirigimos al admin de Sveltia con el token
     return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'text/html' },
-      body: `
-        <html>
-          <body>
-            <script>
-              const token = "${access_token}";
-              const type = "${token_type}";
-              window.location.href = "/admin/#access_token=" + token + "&token_type=" + type;
-            </script>
-          </body>
-        </html>
-      `,
+      statusCode: 302,
+      headers: {
+        'Set-Cookie': tokenCookie,
+        Location: `/admin/#access_token=${access_token}&token_type=${token_type}`,
+        'Cache-Control': 'no-cache',
+      },
     };
   } catch (e) {
     console.error(e);
-    return { statusCode: 500, body: 'Server Error' };
+    return {
+      statusCode: 500,
+      body: 'Server Error',
+    };
   }
 };
-
 
