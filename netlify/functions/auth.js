@@ -5,30 +5,38 @@ const { OAuth } = require('./common/oauth.js');
 const oauth = new OAuth(process.env.OAUTH_PROVIDER || 'github');
 
 exports.handler = async (event) => {
-  const headerCookie = event.headers.cookie || '';
-  const tokenCookie  = headerCookie.match(/jwt=([^;]+)/)?.[1];
-  if (tokenCookie) {
+  // 1) Capturamos el referer que Sveltia pone en ?referer=…
+  const referer = event.queryStringParameters?.referer || '/admin/';
+
+  // 2) Si ya hay jwt, vamos directo
+  const existing = event.headers.cookie?.match(/jwt=([^;]+)/)?.[1];
+  if (existing) {
     return {
       statusCode: 302,
-      headers: { Location: `/admin/#access_token=${tokenCookie}` }
+      headers: {
+        Location: referer
+      }
     };
   }
 
+  // 3) Arrancamos OAuth y guardamos provider + referer en cookies
   const scope = 'public_repo read:user';
-  const authorizationURL = oauth.getAuthorizationURL(scope);
+  const authURL = oauth.getAuthorizationURL(scope);
 
-  const providerCookie = cookie.serialize('provider', oauth.provider, {
-    httpOnly: true,
-    path:     '/',
-    maxAge:   3600,
-    sameSite: 'lax'
-  });
+  const cookies = [
+    cookie.serialize('provider', oauth.provider, {
+      httpOnly: true, path: '/', maxAge: 3600, sameSite: 'lax'
+    }),
+    cookie.serialize('referer', referer, {
+      httpOnly: true, path: '/', maxAge: 3600, sameSite: 'lax'
+    })
+  ];
 
   return {
     statusCode: 302,
     headers: {
-      'Set-Cookie':   providerCookie,
-      Location:       authorizationURL,
+      'Set-Cookie': cookies,
+      Location:    authURL,
       'Cache-Control': 'no-cache'
     }
   };
