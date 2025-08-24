@@ -43,8 +43,3 @@ export const handler = async (event) => {
     },
   };
 };
-
-      'Cache-Control': 'no-cache',
-    },
-  };
-};
