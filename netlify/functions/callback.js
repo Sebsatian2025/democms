@@ -21,13 +21,23 @@ export const handler = async (event) => {
     const { token } = await oauth.getToken(code);
     const { access_token, token_type } = token;
 
-    // Redirigimos al admin de Sveltia con el token
+    // Redirigimos al admin usando un pequeño HTML que asegura que Sveltia
+    // lea el hash fragment correctamente y evite el bucle infinito
     return {
-      statusCode: 302,
-      headers: {
-        Location: `/admin/#access_token=${access_token}&token_type=${token_type}`,
-        'Cache-Control': 'no-cache',
-      },
+      statusCode: 200,
+      headers: { 'Content-Type': 'text/html' },
+      body: `
+        <html>
+          <body>
+            <script>
+              const token = "${access_token}";
+              const type = "${token_type}";
+              // Redirigimos al admin con el hash fragment
+              window.location.href = "/admin/#access_token=" + token + "&token_type=" + type;
+            </script>
+          </body>
+        </html>
+      `,
     };
   } catch (e) {
     console.error(e);
@@ -37,3 +47,4 @@ export const handler = async (event) => {
     };
   }
 };
+
