@@ -10,7 +10,7 @@ export const handler = async (event) => {
   const { referer } = event.queryStringParameters;
   
   // Aquí es donde se definen los permisos (scopes)
-  const scope = 'repo user';
+  const scope = 'public_repo read:user';
 
   const authorizationURL = oauth.getAuthorizationURL(scope);
   
