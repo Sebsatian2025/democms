@@ -1,5 +1,5 @@
 ---
-header_background: /images/IMG_5254.png
+header_background: /img/IMG_5254.png
 header_title: Soy un título principal
 header_subtitle: Soy un subtítulo
 header_button_text: Soy texto del botón
