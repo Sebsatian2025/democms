@@ -7,10 +7,24 @@
 
   <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
 
-<script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <!-- CARGA TU TRADUCCIÓN ANTES DEL BUNDLE -->
+  <script type="module">
+    import es from "/lib/locales/es.js";
+
+    window.SVELTIA_CMS_I18N = {
+      defaultLocale: "es",
+      locales: {
+        en: null,
+        ja: null,
+        es   // <-- tu fichero traducido
+      }
+    };
+  </script>
+
+  <!-- LUEGO SVELTIA CMS -->
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </head>
 <body>
   <div id="nc-root"></div>
 </body>
 </html>
-
