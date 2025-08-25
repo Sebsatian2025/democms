@@ -30,3 +30,7 @@
   object-fit: cover;
   z-index: -1;
 }
+/* Elimina el degradado que tapa el img */
+#callout-section.callout {
+  background: none !important;
+}
