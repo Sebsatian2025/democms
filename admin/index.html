@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Content Manager</title>
 
-  <link rel="cms-config-url" href="config.yml" type="application/yaml"/>
-
-  <!-- CARGA TU TRADUCCIÓN ANTES DEL BUNDLE -->
-  <script type="module">
-    import es from "/lib/locales/es.js";
-
+  <!-- 1) Tu definición inline SIN dependencias -->
+  <script>
     window.SVELTIA_CMS_I18N = {
       defaultLocale: "es",
       locales: {
         en: null,
         ja: null,
-        es   // <-- tu fichero traducido
+        es: {
+          "general.loading": "Cargando…",
+          "general.save":    "Guardar",
+          // …todas tus claves traducidas…
+        }
       }
     };
   </script>
 
-  <!-- LUEGO SVELTIA CMS -->
+  <!-- 2) El bundle de Sveltia CMS, que ya leerá la var global -->
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </head>
 <body>
