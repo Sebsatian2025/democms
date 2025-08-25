@@ -233,21 +233,19 @@ loadSection("header", {
       service_desc_4:    "service-desc-4"
     });
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadSection("callout", {
-    callout_background: value => {
-      document.getElementById("callout-section").style.backgroundImage =
-        `linear-gradient(
-           90deg,
-           rgba(255,255,255,0.1) 0%,
-           rgba(255,255,255,0.1) 100%
-         ),
-         url("${value}")`;
-    },
-    callout_title:       "callout-title",
-    callout_button_text: "callout-button-text",
-    callout_button_link: "callout-button-link"
-  });
+loadSection("callout", {
+  callout_background: value => {
+    document.getElementById("callout-section").style.backgroundImage =
+      `linear-gradient(
+         90deg,
+         rgba(255,255,255,0.1) 0%,
+         rgba(255,255,255,0.1) 100%
+       ),
+       url("${value}")`;
+  },
+  callout_title:       "callout-title",
+  callout_button_text: "callout-button-text",
+  callout_button_link: "callout-button-link"
 });
 
 
