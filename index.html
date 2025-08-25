@@ -230,7 +230,10 @@ loadSection("header", {
     });
 
 loadSection("callout", {
-  callout_background:  "callout-background",
+  callout_background: value => {
+    document.getElementById("callout-section").style.background =
+      `url("${value}") no-repeat center center/cover`;
+  },
   callout_title:       "callout-title",
   callout_button_text: "callout-button-text",
   callout_button_link: "callout-button-link"
