@@ -1,5 +1,5 @@
 ---
-header_background: /assets/img/bg-masthead.jpg
+header_background: /images/IMG_5521.dng
 header_title: Soy un título principal
 header_subtitle: Soy un subtítulo
 header_button_text: Soy texto del botón
