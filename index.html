@@ -90,9 +90,15 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section id="callout-section" class="callout"
-        style="background:linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url('assets/img/bg-callout.jpg?h=4b06cd229840dd2ac20165f423f36ca6');background-position:center center;background-repeat:no-repeat;background-size:cover;">
+<section
+  id="callout-section"
+  class="callout"
+  style="position: relative; overflow: hidden;">
+  <img
+    id="callout-background"
+    src="/img/uploads/bg-callout.jpg"
+    alt="Fondo Callout"
+    class="callout-cover" /> 
         <div class="container text-center">
             <h2 class="mb-5 mx-auto" id="callout-title">Welcome to<br>next website!</h2><a
                 class="btn btn-primary btn-xl" role="button" id="callout-button-link" href="#"><span
@@ -220,6 +226,7 @@ loadSection("header", {
     });
 
     loadSection("callout", {
+      callout_background: "callout-background",
       callout_title:       "callout-title",
       callout_button_text: "callout-button-text",
       callout_button_link: "callout-button-link"
