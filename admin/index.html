@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Content Manager</title>
 
-  <!-- 1) Tu definición inline SIN dependencias -->
-  <script>
+  <!-- 1) Importamos tu fichero de traducciones y definimos la variable global -->
+  <script type="module">
+    import es from "./lib/locales/es.js";
+
     window.SVELTIA_CMS_I18N = {
       defaultLocale: "es",
       locales: {
         en: null,
         ja: null,
-        es: {
-          "general.loading": "Cargando…",
-          "general.save":    "Guardar",
-          // …todas tus claves traducidas…
-        }
+        es
       }
     };
+
+    console.log("✅ SVELTIA_CMS_I18N inyectada:", window.SVELTIA_CMS_I18N);
   </script>
 
-  <!-- 2) El bundle de Sveltia CMS, que ya leerá la var global -->
+  <!-- 2) Cargamos el bundle oficial de Sveltia CMS, que leerá nuestra variable -->
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </head>
 <body>
