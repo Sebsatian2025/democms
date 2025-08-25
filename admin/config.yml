@@ -8,8 +8,8 @@ backend:
   auth_endpoint: "auth"                 
   token_endpoint: "callback"            
 
-media_folder: "assets/images"
-public_folder: "/images"
+media_folder: "assets/img"
+public_folder: "/img"
 
 collections:
   - name: "site_content"
@@ -24,6 +24,7 @@ collections:
           - { label: "Subtítulo",        name: "header_subtitle",   widget: "string" }
           - { label: "Texto del botón",  name: "header_button_text",widget: "string" }
           - { label: "Enlace del botón", name: "header_button_link",widget: "string" }
+
 
 
 
