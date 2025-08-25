@@ -28,7 +28,4 @@
   z-index: -1;
 }
 /* Elimina el degradado de la clase si aún persiste */
-#callout-section.callout {
-  background: none !important;
-}
 
