@@ -1,5 +1,5 @@
 ---
-cta_background_color: '#2bff00'
+cta_background_color: '#087b7d'
 cta_title: The buttons below are impossible to resist..
 cta_button_1_text: Click Me!
 cta_button_1_link: '#'
