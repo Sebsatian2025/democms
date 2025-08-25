@@ -32,10 +32,16 @@
         </div>
     </nav>
 <header
-  class="d-flex masthead"
   id="header-section"
-  style="background-image:url('/img/bg-masthead.jpg');">
-        <div class="container text-center my-auto">
+  class="d-flex masthead"
+  style="position: relative; overflow: hidden;">
+  <img
+    id="header-background"
+    src="/img/uploads/bg-masthead.jpg"
+    alt="Fondo Header"
+    class="header-cover"
+  />
+  <div class="container text-center my-auto">
             <h1 class="mb-1" id="header-title">Stylish Portfoliо</h1>
             <h3 class="mb-5" id="header-subtitle"><em>A Free Bootstrap Theme</em></h3><a class="btn btn-primary btn-xl"
                 role="button" id="header-button-link" href="#about"><span id="header-button-text">Find Out
@@ -176,17 +182,13 @@
     // 1) loadSection para todos los bloques de contenido
     //
 loadSection("header", {
-  header_background: value => {
-    const el = document.getElementById("header-section");
-    if (el) {
-      el.style.backgroundImage = `url("${value}")`;
-    }
-  },
+  header_background: "header-background",
   header_title:       "header-title",
   header_subtitle:    "header-subtitle",
   header_button_text: "header-button-text",
   header_button_link: "header-button-link"
 });
+
 
     loadSection("about", {
       about_title:       "about-title",
