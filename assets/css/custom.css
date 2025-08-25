@@ -16,9 +16,9 @@
 }
 
 
-#callout-section {
-  position: relative;
-  overflow: hidden;
+/* assets/css/custom.css – carga *después* de styles.min.css */
+#callout-section.callout {
+  background: none !important;
 }
 
 .callout-cover {
@@ -30,7 +30,4 @@
   object-fit: cover;
   z-index: -1;
 }
-/* Elimina el degradado que tapa el img */
-#callout-section.callout {
-  background: none !important;
-}
+
